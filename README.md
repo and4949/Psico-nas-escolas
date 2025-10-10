@@ -1,6 +1,6 @@
-# Node.js template
+<p align="center"><img src="./assets/images/Logo-azul" alt="Logo" width="200"></p>
 
-This is a Node.js project.
+<h1 align="center">Psicologo nas Escolas</h1>
 
 Add your [configuration](https://codesandbox.io/docs/projects/learn/setting-up/tasks) to optimize it for [CodeSandbox](https://codesandbox.io/p/dashboard).
 
