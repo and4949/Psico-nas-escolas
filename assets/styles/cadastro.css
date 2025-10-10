@@ -1,0 +1,143 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    font-family: "Inter", sans-serif;
+    display: flex;
+    flex-direction: column;
+    background-color: #2763E5;
+    color: #050505;
+}
+.voltar{
+    display: flex;
+    width: 294px;
+    height: 60px;
+    border-radius: 60px;
+    background-color: #F5F5F5;
+    flex-direction: row;
+    margin-top: 20px;
+    margin-left: 23px;
+    text-decoration: none;
+}
+.botao{
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 100%;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    color: #050505;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 45px;
+    margin-left: 13px;
+}
+.selecao{
+    width: 1017px;
+    height: 503px;
+    border-radius: 18px;
+    background-color: #F5F5F5;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.parte-1{
+    width: 100%;
+}
+.parte-2{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+}
+.opcao{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.nome{
+    width: 357px;
+    height: 78px;
+    border-radius: 60px;
+    color: #F5F5F5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+}
+#azulescuro{
+    background-color: #2730E5;
+}
+#azulclaro{
+    background-color: #2763E5;
+}
+.area{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.linha-formulario{
+    display: flex;
+    flex-direction: row;
+}
+.campo{
+    display: flex;
+    flex-direction: column;
+    margin-right: 87px;
+}
+
+.selecao form{
+    display: flex;
+    flex-direction: column;
+    height: 364px;
+    width: 840px;
+}
+.selecao label{
+    font-size: 24px;
+    margin-left: 23px;
+}
+.selecao input{
+    width: 370px;
+    height: 44px;
+    border-radius: 60px;
+    border: #d9d9d9 solid 3px;
+    margin-bottom: 23px;
+    font-size: 24px;
+    line-height: 100%;
+    vertical-align: middle;
+    padding:10px
+}
+.selecao select{
+    width: 370px;
+    height: 44px;
+    border-radius: 6px;
+    border: #a4a4a4 solid 3px;
+    font-size: 24px;
+    line-height: 100%;
+}
+.selecao button{
+    width: 370px;
+    height: 100%;
+    border-radius: 60px;
+    border: none;
+    font-size: 36px;
+    color: #F5F5F5;
+}
+input::placeholder{
+    color: #a4a4a4;
+}

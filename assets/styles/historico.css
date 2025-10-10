@@ -1,0 +1,115 @@
+.consultas{
+    display: flex;
+    width: 643px;
+    height: 525px;
+    flex-direction: column;
+    overflow-y: auto;
+}
+.consulta{
+    width: 569px;
+    height: 149px;
+    background-color: #f5f5f5;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 39px;
+}
+.info{
+    display: flex;
+    font-size: 24px;
+    vertical-align: middle;
+    margin-left: 28px;
+    margin-bottom: 9px;
+}
+.titulo{
+    font-size: 26px;
+    vertical-align: middle;
+    font-style: Medium;
+    margin-left: 28px;
+    margin-bottom: 23px;
+    margin-top: 16px;
+}
+.icone{
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#cinza{
+    background-color: #5C6270;
+}
+#adm{
+    margin-right: 146px;
+}
+.area ::-webkit-scrollbar{
+    width: 37px;
+    border-radius: 30px;
+    background-color: #CAD4E9;
+}
+::-webkit-scrollbar-thumb {
+    background: #f5f5f5;  
+    border-radius: 30px;
+    min-width: 25px;  
+    border: #CAD4E9 6px solid;
+  }
+.mais_sobre_consulta{
+    width: 525px;
+    height: 569px;
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.informações{
+    width: 560px;
+    height: 291px;
+    background-color: #F5F5F5;
+    border-radius: 18px;
+}
+.avaliacao{
+    width: 560px;
+    height: 232px;
+    background-color: #81AFF4;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.p28px{
+    font-size: 28px;
+    vertical-align: middle;
+    font-style: Medium;
+    margin-left: 18px;
+    margin-top: 16px;
+}
+.comentario{
+    width: 520px;
+    background-color: #F5F5F5;
+    border-radius: 30px;
+    border: #D9D9D9 3px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.alerta{
+    width: 201px;
+    height: 34px;
+    border-radius: 18px;
+    background-color: #2763E5;
+    border: none;
+    color: #F5F5F5;
+    font-size: 24px;
+}
+.estrelas button{
+    background: none;
+    border: none;
+}
+.tit{
+    font-size: 26px;
+}
+.escrito{
+    font-size: 20px;
+}
