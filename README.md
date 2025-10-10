@@ -1,10 +1,9 @@
-<p align="center"><img src="./assets/images/Logo-azul" alt="Logo" width="200"></p>
 
-<h1 align="center">Psicologo nas Escolas</h1>
+<p align="center"><img src="./assets/images/Logo-azul.svg" alt="Logo" width="200"></p>
 
-Add your [configuration](https://codesandbox.io/docs/projects/learn/setting-up/tasks) to optimize it for [CodeSandbox](https://codesandbox.io/p/dashboard).
+<h1 align="center">Psicoajuda</h1>
 
-## Resources
+<p>O projeto Psicoajuda tem como objetivo  em resumo implementar um sistema de consultas psicológicas acessível, em escolas que não tem acesso a este beneficio</p>
 
-- [CodeSandbox — Docs](https://codesandbox.io/docs/learn)
-- [CodeSandbox — Discord](https://discord.gg/Ggarp3pX5H)
+<h2>N/D</h2>
+
