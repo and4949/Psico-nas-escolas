@@ -1,11 +1,6 @@
-const hoje = new Date()
-dia_selecionado=""
-
+var dia_selecionado= new Date()
 function criar_calendario(){
     let calendario_visual= document.querySelector(".dias")
-    if (dia_selecionado==""){
-        dia_selecionado=hoje
-    }
     mes_selecionado=dia_selecionado.getMonth()
     ano=dia_selecionado.getFullYear()
     primeiro_dia_do_mes= new Date(ano,mes_selecionado,1)
@@ -40,12 +35,30 @@ function selecionar(a,b,c){
 function mudarmes(){
     const meses = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
     let alternarmes= document.querySelector(".mes")
-    alternarmes.innerHTML=`<button onclick="avançarmes(-1)"> <img src="../assets/images/arrow-left-solid-full 1.svg" alt=""> </button>
-    <p>${dia_selecionado.getFullYear()}/${meses[dia_selecionado.getMonth()]}</p>
-    <button onclick="avançarmes(1)"> <img src="../assets/images/arrow-right-solid-full 1.svg" alt=""> </button>`
+    alternarmes.innerHTML=`<button class="anomes" onclick="avançarmes(-1)"> <img src="../assets/images/arrow-left-solid-full 1.svg" alt=""> </button>
+    <button class="anomes" onclick="selecionarmes()"><p>${dia_selecionado.getFullYear()}/${meses[dia_selecionado.getMonth()]}</p></button>
+    <button class="anomes" onclick="avançarmes(1)"> <img src="../assets/images/arrow-right-solid-full 1.svg" alt=""> </button>`
 }    
 function avançarmes(x){
     dia_selecionado=new Date (dia_selecionado.getFullYear(),dia_selecionado.getMonth()+x,dia_selecionado.getDate())
     criar_calendario()
+}
+
+function selecionarmes(){
+    const meses = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
+    let alternarmes= document.querySelector(".mes")
+    alternarmes.innerHTML=`<p><button class="anomes" onclick="criar_calendario()">${dia_selecionado.getFullYear()}</button></p>`
+    let calendario_visual= document.querySelector(".dias")
+    let texto=""
+    let n=0
+    for (let s = 0; s < 3; s++) {
+        texto+=`<div class="semana">`
+        for (let d = 0; d<4;d++){
+            texto+=`<button class="semanadia" onclick="avançarmes(-${dia_selecionado.getMonth()}+${n})">${meses[n]}</button>`
+            n+=1
+        }
+        texto+=`</div>`
+        }
+    calendario_visual.innerHTML=texto
 }
 criar_calendario()
