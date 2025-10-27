@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../assets/styles/padrao.css">
     <link rel="stylesheet" href="../assets/styles/calendario.css">
     <script src="../assets/scripts/calendario.js" defer></script>
+    <script src="../assets/scripts/admin.js" defer></script>
 </head> 
 <body id="cinza">
     <header>
@@ -23,16 +24,20 @@
             </div>
         </div>
 
-        <div class="opcao" id="sair">
+        <a href="./index.html" class="opcao" id="sair">
             <img src="../assets/images/Sair.svg" alt="">
-                Sair
+            Sair
+        </a>
         </div>
     </header>
     <div class="area">
         <div class="calendario">
             <div class="mes">
+                <button>2025</button>
                 </div>
             <div class="dias">
+                <div class="semana">
+                </div>
             </div>
             <div class="multipla-selecao">
                 <button></button>
@@ -47,25 +52,13 @@
                         <p>7:30 até 8:15</p>
                         <button></button>
                     </div>
-                    <div class="hora">
-                        <p>7:30 até 8:15</p>
-                        <button></button>
-                    </div>
-                    <div class="hora">
-                        <p>7:30 até 8:15</p>
-                        <button></button>
-                    </div>
-                    <div class="hora">
-                        <p>7:30 até 8:15</p>
-                        <button></button>
-                    </div>
-                    <div class="hora">
-                        <p>7:30 até 8:15</p>
-                        <button></button>
-                    </div>
-                    <div class="hora">
-                        <p>7:30 até 8:15</p>
-                        <button></button>
+                    <div class="hora" id="azulclaro">
+                        <div class="definir_hora">
+                            <input class="comeco" type="time">
+                            até
+                            <input class="fim" type="time">
+                        </div>
+                        <button class="colocahorario" onclick="adicionar()" >Adicionar Horario</button>
                     </div>
                 </div>
             </div>
