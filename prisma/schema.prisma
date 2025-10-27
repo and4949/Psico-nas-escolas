@@ -11,44 +11,46 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Aluno{
-  id Int @id @default(autoincrement())
-  nome String
-  turma String
-  email String @unique
-  genero String
-  matricula String @unique
-  senha String
-  adm Boolean @default(false)
+model Aluno {
+  id        Int        @id @default(autoincrement())
+  nome      String
+  turma     String
+  email     String     @unique
+  genero    String
+  matricula String     @unique
+  senha     String
+  adm       Boolean    @default(false)
+  Consulta  Consulta[]
 }
 
-model Psicologo{
-  id Int @id @default(autoincrement())
-  nome String
-  genero String
-  crp String @unique
-  email String @unique
-  senha String
+model Psicologo {
+  id       Int        @id @default(autoincrement())
+  nome     String
+  genero   String
+  crp      String     @unique
+  email    String     @unique
+  senha    String
+  Consulta Consulta[]
 }
 
-model Horario{
-  id Int @id @default(autoincrement())
-  comeco DateTime 
-  fim DateTime
-  status Int
-  escola String
+model Horario {
+  id       Int        @id @default(autoincrement())
+  comeco   DateTime
+  fim      DateTime
+  status   Int
+  escola   String
+  Consulta Consulta[]
 }
 
-model Consulta{
-  id Int @id @default(autoincrement())
-  aluno Aluno? @relation(fields: [aluno_id], references:[id])
-  aluno_id Int?
-  psicologo Psicologo @relation(fields: [psicologo_id], references:[id])
+model Consulta {
+  id           Int       @id @default(autoincrement())
+  aluno        Aluno?    @relation(fields: [aluno_id], references: [id])
+  aluno_id     Int?
+  psicologo    Psicologo @relation(fields: [psicologo_id], references: [id])
   psicologo_id Int
-  horario Horario @relation(fields: [horario_id], references:[id])
-  horario_id Int
-  nota Int?
-  avaliacao String?
-  status Int
+  horario      Horario   @relation(fields: [horario_id], references: [id])
+  horario_id   Int
+  nota         Int?
+  avaliacao    String?
+  status       Int
 }
-

@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@prisma/client@^6.18.0":
+  version "6.18.0"
+  resolved "https://registry.npmjs.org/@prisma/client/-/client-6.18.0.tgz"
+  integrity sha512-jnL2I9gDnPnw4A+4h5SuNn8Gc+1mL1Z79U/3I9eE2gbxJG1oSA+62ByPW4xkeDgwE0fqMzzpAZ7IHxYnLZ4iQA==
+
 "@prisma/config@6.18.0":
   version "6.18.0"
   resolved "https://registry.npmjs.org/@prisma/config/-/config-6.18.0.tgz"
@@ -197,7 +202,7 @@ pkg-types@^2.2.0, pkg-types@^2.3.0:
     exsolve "^1.0.7"
     pathe "^2.0.3"
 
-prisma@^6.18.0:
+prisma@*, prisma@^6.18.0:
   version "6.18.0"
   resolved "https://registry.npmjs.org/prisma/-/prisma-6.18.0.tgz"
   integrity sha512-bXWy3vTk8mnRmT+SLyZBQoC2vtV9Z8u7OHvEu+aULYxwiop/CPiFZ+F56KsNRNf35jw+8wcu8pmLsjxpBxAO9g==
