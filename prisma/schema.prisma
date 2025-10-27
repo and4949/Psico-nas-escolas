@@ -19,5 +19,10 @@ model Aluno{
   genero String
   matricula String @unique
   senha String
-  
+  adm Boolean @default(false)
+}
+model Psicologo{
+  id Int @id @default(autoincrement())
+  nome String
+  gener
 }
