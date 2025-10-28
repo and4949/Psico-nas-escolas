@@ -1,5 +1,5 @@
 
-<p align="center"><img src="./assets/images/Logo-azul.svg" alt="Logo" width="200"></p>
+<p align="center"><img src="./public/assets/images/Logo-azul.svg" alt="Logo" width="200"></p>
 
 <h1 align="center">Psicoajuda</h1>
 
