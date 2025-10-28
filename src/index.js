@@ -1,8 +1,8 @@
 const express = require("express");
-const { rotaAlunos } = require("./controllers/alunos");
-const { rotaPsicologos } = require("./controllers/psicologos");
-const { rotaHorarios } = require("./controllers/horarios");
-const { rotaConsultas } = require("./controllers/consultas");
+const { rotaAlunos } = require("./alunos");
+const { rotaPsicologos } = require("./psicologos");
+const { rotaHorarios } = require("./horarios");
+const { rotaConsultas } = require("./consultas");
 const server = express();
 
 server.use(express.json());
