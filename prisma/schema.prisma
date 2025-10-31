@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Aluno {
+  id        Int        @id @default(autoincrement())
+  nome      String
+  turma     String
+  email     String     @unique
+  genero    String
+  matricula String     @unique
+  senha     String
+  adm       Boolean    @default(false)
+  escola   String
+  Consulta  Consulta[]
+}
+
+model Psicologo {
+  id       Int        @id @default(autoincrement())
+  nome     String
+  genero   String
+  crp      String     @unique
+  email    String     @unique
+  senha    String
+  Consulta Consulta[]
+}
+
+model Horario {
+  id       Int        @id @default(autoincrement())
+  comeco   DateTime
+  fim      DateTime
+  status   Int @default(0)
+  Consulta Consulta[]
+}
+
+model Consulta {
+  id           Int       @id @default(autoincrement())
+  aluno        Aluno?    @relation(fields: [aluno_id], references: [id])
+  aluno_id     Int?
+  psicologo    Psicologo @relation(fields: [psicologo_id], references: [id])
+  psicologo_id Int
+  horario      Horario   @relation(fields: [horario_id], references: [id])
+  horario_id   Int
+  nota         Int?
+  avaliacao    String?
+  status       Int	@default(0)
+}
