@@ -1,17 +1,19 @@
 {
-  "name": "nodejs-sandbox",
+  "name": "hello-prisma",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node --watch index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "Ives van Hoorne",
-  "license": "MIT",
-  "dependencies": {
-    "@prisma/client": "^6.18.0",
-    "express": "^5.1.0",
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
     "prisma": "^6.18.0"
+  },
+  "dependencies": {
+    "@prisma/client": "6.18.0",
+    "express": "^5.1.0"
   }
 }

@@ -10,7 +10,7 @@ rotaAlunos.get("/alunos", async function (req, res) {
 });
 
 rotaAlunos.post("/alunos", async function (req, res) {
-  const { nome, email, genero, matricula, senha, turma } = req.body;
+  const { nome, email, genero, matricula, senha, turma, escola } = req.body;
   const itens = await db.Aluno.create({
     data: {
       email,
@@ -19,6 +19,7 @@ rotaAlunos.post("/alunos", async function (req, res) {
       matricula,
       senha,
       turma,
+      escola,
     },
   });
   console.log(itens);
@@ -36,7 +37,7 @@ rotaAlunos.delete("/alunos/:id", async function (req, res) {
 });
 rotaAlunos.put("/alunos/:id", async function (req, res) {
   const { id } = req.params;
-  const { nome, email, genero, matricula, senha, turma } = req.body;
+  const { nome, email, genero, matricula, senha, turma, escola } = req.body;
   const usuario = await db.Aluno.update({
     where: { id: Number(id) },
     data: {
@@ -46,6 +47,7 @@ rotaAlunos.put("/alunos/:id", async function (req, res) {
       matricula,
       senha,
       turma,
+      escola,
     },
   });
   console.log("aluno atualizado");

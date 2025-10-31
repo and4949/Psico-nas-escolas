@@ -10,12 +10,14 @@ rotaConsultas.get("/consultas", async function (req, res) {
 });
 
 rotaConsultas.post("/consultas", async function (req, res) {
-  const { psicologo_id, horario_id, status } = req.body;
+  const { aluno_id, psicologo_id, horario_id, nota, avaliacao } = req.body;
   const itens = await db.Consulta.create({
     data: {
+      aluno_id,
       horario_id,
       psicologo_id,
-      status,
+      nota,
+      avaliacao,
     },
   });
   console.log(itens);
@@ -33,12 +35,16 @@ rotaConsultas.delete("/consultas/:id", async function (req, res) {
 });
 rotaConsultas.put("/consultas/:id", async function (req, res) {
   const { id } = req.params;
-  const { psicologo_id, horario_id, status } = req.body;
+  const { psicologo_id, horario_id, aluno_id, nota, avaliacao, status } =
+    req.body;
   const usuario = await db.Consulta.update({
     where: { id: Number(id) },
     data: {
+      aluno_id,
       horario_id,
       psicologo_id,
+      nota,
+      avaliacao,
       status,
     },
   });

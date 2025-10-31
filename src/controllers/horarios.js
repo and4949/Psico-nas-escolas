@@ -4,19 +4,17 @@ const { db } = require("../db");
 const rotaHorarios = Router();
 
 rotaHorarios.get("/horarios", async function (req, res) {
-  const itens = await db.Psicologo.findMany();
+  const itens = await db.Horario.findMany();
   console.log(itens);
   res.json(itens);
 });
 
 rotaHorarios.post("/Horarios", async function (req, res) {
-  const { comeco, fim, status, escola } = req.body;
-  const itens = await db.Psicologo.create({
+  const { comeco, fim } = req.body;
+  const itens = await db.Horario.create({
     data: {
       fim,
       comeco,
-      status,
-      escola,
     },
   });
   console.log(itens);
@@ -25,7 +23,7 @@ rotaHorarios.post("/Horarios", async function (req, res) {
 
 rotaHorarios.delete("/Horarios/:id", async function (req, res) {
   const { id } = req.params;
-  const usuario = await db.Psicologo.delete({
+  const usuario = await db.Horario.delete({
     where: { id: Number(id) },
   });
   console.log("Usuário deletado:", usuario);
@@ -34,14 +32,13 @@ rotaHorarios.delete("/Horarios/:id", async function (req, res) {
 });
 rotaHorarios.put("/Horarios/:id", async function (req, res) {
   const { id } = req.params;
-  const { comeco, fim, status, escola } = req.body;
-  const usuario = await db.Psicologo.update({
+  const { comeco, fim, status } = req.body;
+  const usuario = await db.Horario.update({
     where: { id: Number(id) },
     data: {
       fim,
       comeco,
       status,
-      escola,
     },
   });
   console.log("Horario atualizado");
