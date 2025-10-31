@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Psicoajuda</title>
-    <script defer src=""></script>
+    <script defer src="../assets/scripts/login.js"></script>
     <link rel="stylesheet" href="../assets/styles/style.css">
 </head>
 
@@ -23,29 +23,32 @@
     </div>
 
 
-    <div class="divisao">
+    <form class="divisao">
         <div class="barra_opcoes">
             <p class="titulo">Acesse sua conta</p>
 
             <div class="campo-digitacao">
                 <p class="escolha">Email</p>
                 <div class="area_digitacao">
-                    <input class="digitacao" type="text" placeholder="Digite seu email aqui!" name="email">
+                    <input class="digitacao" type="text" placeholder="Digite seu email aqui!" id="email">
                 </div>
             </div>
 
             <div class="campo-digitacao">
                 <p class="escolha">Senha</p>
                 <div class="area_digitacao">
-                    <input class="digitacao" type="text" placeholder="Digite sua senha aqui!" name="senha">
+                    <input class="digitacao" type="password" placeholder="Digite sua senha aqui!" id="senha">
                 </div>
             </div>
 
-            <a href="" class="muda_pagina">Entrar</a>
+            <button class="muda_pagina" type="submit" onclick="pegar_infos()">Entrar</button>
+
             <p class="pergunta">Não possui conta?</p>
             <a href="./escolha-perfil.html" class="muda_pagina">Cadastrar-se</a>
-        </div>
+        </form>
     </div>
+
 </body>
+
 
 </html>
