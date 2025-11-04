@@ -1,155 +1,148 @@
 <!DOCTYPE html>
 <html lang="pt">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Psicoajuda</title>
     <script defer src=""></script>
-    <link rel="stylesheet" href="../assets/styles/padrao.css">
-    <link rel="stylesheet" href="../assets/styles/avaliacoes.css">
-</head> 
-<body id="azulclaro">
+    <link rel="stylesheet" href="../assets/styles/padrao.css" />
+    <link rel="stylesheet" href="../assets/styles/avaliacoes.css" />
+    <script src="../assets/scripts/geral.js" defer></script>
+  </head>
+  <body id="azulclaro">
     <header>
-        <div class="opçoes">
-            <a href="./aluno-historico.html" class="opcao" id="nao_uso">
-                <img src="../assets/images/Horas.svg" alt="">
-                Histórico de consultas
-            </a>
-            <a href="./aluno-agenda.html" class="opcao" id="nao_uso">
-                <img src="../assets/images/Anotar.svg" alt="">
-                Agenda consulta
-            </a>
-            <a href="./aluno-avaliacoes.html" class="opcao" >
-                <img src="../assets/images/Estrela.svg" alt="">
-                Avaliações
-            </a>
-        </div>
-        <a href="./index.html" class="opcao" id="sair">
-            <img src="../assets/images/Sair.svg" alt="">
-            Sair
+      <div class="opçoes">
+        <a href="./aluno-historico.html" class="opcao" id="nao_uso">
+          <img src="../assets/images/Horas.svg" alt="" />
+          Histórico de consultas
         </a>
+        <a href="./aluno-agenda.html" class="opcao" id="nao_uso">
+          <img src="../assets/images/Anotar.svg" alt="" />
+          Agenda consulta
+        </a>
+        <a href="./aluno-avaliacoes.html" class="opcao">
+          <img src="../assets/images/Estrela.svg" alt="" />
+          Avaliações
+        </a>
+      </div>
+      <a href="./index.html" class="opcao" id="sair" onclick="leave()">
+        <img src="../assets/images/Sair.svg" alt="" />
+        Sair
+      </a>
     </header>
-    
+
     <div class="area">
-        <div class="avaliacoes">
-            <div class="dupla-avaliacao">
-                <div class="avaliacao">
-                    <div class="info-comentario">
-                    Avaliação do profissional: Cassiane L.
-                    <p>12/02/2025 às 11:30</p>
-                    </div>
-                    <div class="linha">
-                        <div class="estrelas">
-                            <img src="../assets/images/estrela-azul.svg" alt="">
-                            <img src="../assets/images/estrela-azul.svg" alt="">
-                            <img src="../assets/images/estrela-azul.svg" alt="">
-                            <img src="../assets/images/estrela-azul.svg" alt="">
-                            <img src="../assets/images/estrela-vazia.svg" alt="">
-                        </div>
-                        <button class="deletar"> deletar</button>
-                    </div>
-                        <div class="comentario">
-                        </div>
-                </div>
-                <div class="avaliacao">
-                    <div class="info-comentario">
-                    Avaliação do profissional: Cassiane L.
-                    <p>12/02/2025 às 11:30</p>
-                    </div>
-                    <div class="linha">
-                        <div class="estrelas">
-                            <img src="../assets/images/estrela-azul.svg" alt="">
-                            <img src="../assets/images/estrela-azul.svg" alt="">
-                            <img src="../assets/images/estrela-azul.svg" alt="">
-                            <img src="../assets/images/estrela-azul.svg" alt="">
-                            <img src="../assets/images/estrela-vazia.svg" alt="">
-                        </div>
-                        <button class="deletar"> deletar</button>
-                    </div>
-                        <div class="comentario">
-                        </div>
-                </div>
+      <div class="avaliacoes">
+        <div class="dupla-avaliacao">
+          <div class="avaliacao">
+            <div class="info-comentario">
+              Avaliação do profissional: Cassiane L.
+              <p>12/02/2025 às 11:30</p>
             </div>
-            <div class="dupla-avaliacao">
-                <div class="avaliacao">
-                    <div class="info-comentario">
-                    Avaliação do profissional: Cassiane L.
-                    <p>12/02/2025 às 11:30</p>
-                    </div>
-                    <div class="linha">
-                        <div class="estrelas">
-                            <img src="../assets/images/estrela-azul.svg" alt="">
-                            <img src="../assets/images/estrela-azul.svg" alt="">
-                            <img src="../assets/images/estrela-azul.svg" alt="">
-                            <img src="../assets/images/estrela-azul.svg" alt="">
-                            <img src="../assets/images/estrela-vazia.svg" alt="">
-                        </div>
-                        <button class="deletar"> deletar</button>
-                    </div>
-                        <div class="comentario">
-                        </div>
-                </div>
-                <div class="avaliacao">
-                    <div class="info-comentario">
-                    Avaliação do profissional: Cassiane L.
-                    <p>12/02/2025 às 11:30</p>
-                    </div>
-                    <div class="linha">
-                        <div class="estrelas">
-                            <img src="../assets/images/estrela-azul.svg" alt="">
-                            <img src="../assets/images/estrela-azul.svg" alt="">
-                            <img src="../assets/images/estrela-azul.svg" alt="">
-                            <img src="../assets/images/estrela-azul.svg" alt="">
-                            <img src="../assets/images/estrela-vazia.svg" alt="">
-                        </div>
-                        <button class="deletar"> deletar</button>
-                    </div>
-                        <div class="comentario">
-                        </div>
-                </div>
+            <div class="linha">
+              <div class="estrelas">
+                <img src="../assets/images/estrela-azul.svg" alt="" />
+                <img src="../assets/images/estrela-azul.svg" alt="" />
+                <img src="../assets/images/estrela-azul.svg" alt="" />
+                <img src="../assets/images/estrela-azul.svg" alt="" />
+                <img src="../assets/images/estrela-vazia.svg" alt="" />
+              </div>
+              <button class="deletar">deletar</button>
             </div>
-            <div class="dupla-avaliacao">
-                <div class="avaliacao">
-                    <div class="info-comentario">
-                    Avaliação do profissional: Cassiane L.
-                    <p>12/02/2025 às 11:30</p>
-                    </div>
-                    <div class="linha">
-                        <div class="estrelas">
-                            <img src="../assets/images/estrela-azul.svg" alt="">
-                            <img src="../assets/images/estrela-azul.svg" alt="">
-                            <img src="../assets/images/estrela-azul.svg" alt="">
-                            <img src="../assets/images/estrela-azul.svg" alt="">
-                            <img src="../assets/images/estrela-vazia.svg" alt="">
-                        </div>
-                        <button class="deletar"> deletar</button>
-                    </div>
-                        <div class="comentario">
-                        </div>
-                </div>
-                <div class="avaliacao">
-                    <div class="info-comentario">
-                    Avaliação do profissional: Cassiane L.
-                    <p>12/02/2025 às 11:30</p>
-                    </div>
-                    <div class="linha">
-                        <div class="estrelas">
-                            <img src="../assets/images/estrela-azul.svg" alt="">
-                            <img src="../assets/images/estrela-azul.svg" alt="">
-                            <img src="../assets/images/estrela-azul.svg" alt="">
-                            <img src="../assets/images/estrela-azul.svg" alt="">
-                            <img src="../assets/images/estrela-vazia.svg" alt="">
-                        </div>
-                        <button class="deletar"> deletar</button>
-                    </div>
-                        <div class="comentario">
-                        </div>
-                </div>
+            <div class="comentario"></div>
+          </div>
+          <div class="avaliacao">
+            <div class="info-comentario">
+              Avaliação do profissional: Cassiane L.
+              <p>12/02/2025 às 11:30</p>
             </div>
-            
+            <div class="linha">
+              <div class="estrelas">
+                <img src="../assets/images/estrela-azul.svg" alt="" />
+                <img src="../assets/images/estrela-azul.svg" alt="" />
+                <img src="../assets/images/estrela-azul.svg" alt="" />
+                <img src="../assets/images/estrela-azul.svg" alt="" />
+                <img src="../assets/images/estrela-vazia.svg" alt="" />
+              </div>
+              <button class="deletar">deletar</button>
+            </div>
+            <div class="comentario"></div>
+          </div>
         </div>
+        <div class="dupla-avaliacao">
+          <div class="avaliacao">
+            <div class="info-comentario">
+              Avaliação do profissional: Cassiane L.
+              <p>12/02/2025 às 11:30</p>
+            </div>
+            <div class="linha">
+              <div class="estrelas">
+                <img src="../assets/images/estrela-azul.svg" alt="" />
+                <img src="../assets/images/estrela-azul.svg" alt="" />
+                <img src="../assets/images/estrela-azul.svg" alt="" />
+                <img src="../assets/images/estrela-azul.svg" alt="" />
+                <img src="../assets/images/estrela-vazia.svg" alt="" />
+              </div>
+              <button class="deletar">deletar</button>
+            </div>
+            <div class="comentario"></div>
+          </div>
+          <div class="avaliacao">
+            <div class="info-comentario">
+              Avaliação do profissional: Cassiane L.
+              <p>12/02/2025 às 11:30</p>
+            </div>
+            <div class="linha">
+              <div class="estrelas">
+                <img src="../assets/images/estrela-azul.svg" alt="" />
+                <img src="../assets/images/estrela-azul.svg" alt="" />
+                <img src="../assets/images/estrela-azul.svg" alt="" />
+                <img src="../assets/images/estrela-azul.svg" alt="" />
+                <img src="../assets/images/estrela-vazia.svg" alt="" />
+              </div>
+              <button class="deletar">deletar</button>
+            </div>
+            <div class="comentario"></div>
+          </div>
+        </div>
+        <div class="dupla-avaliacao">
+          <div class="avaliacao">
+            <div class="info-comentario">
+              Avaliação do profissional: Cassiane L.
+              <p>12/02/2025 às 11:30</p>
+            </div>
+            <div class="linha">
+              <div class="estrelas">
+                <img src="../assets/images/estrela-azul.svg" alt="" />
+                <img src="../assets/images/estrela-azul.svg" alt="" />
+                <img src="../assets/images/estrela-azul.svg" alt="" />
+                <img src="../assets/images/estrela-azul.svg" alt="" />
+                <img src="../assets/images/estrela-vazia.svg" alt="" />
+              </div>
+              <button class="deletar">deletar</button>
+            </div>
+            <div class="comentario"></div>
+          </div>
+          <div class="avaliacao">
+            <div class="info-comentario">
+              Avaliação do profissional: Cassiane L.
+              <p>12/02/2025 às 11:30</p>
+            </div>
+            <div class="linha">
+              <div class="estrelas">
+                <img src="../assets/images/estrela-azul.svg" alt="" />
+                <img src="../assets/images/estrela-azul.svg" alt="" />
+                <img src="../assets/images/estrela-azul.svg" alt="" />
+                <img src="../assets/images/estrela-azul.svg" alt="" />
+                <img src="../assets/images/estrela-vazia.svg" alt="" />
+              </div>
+              <button class="deletar">deletar</button>
+            </div>
+            <div class="comentario"></div>
+          </div>
+        </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>

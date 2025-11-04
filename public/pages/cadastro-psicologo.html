@@ -1,68 +1,96 @@
 <!DOCTYPE html>
 <html lang="pt">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Psicoajuda</title>
     <script defer src=""></script>
-    <link rel="stylesheet" href="../assets/styles/cadastro.css">
-</head>
+    <link rel="stylesheet" href="../assets/styles/cadastro.css" />
+    <script src="../assets/scripts/geral.js" defer></script>
+    <script src="../assets/scripts/verifyUserPresencePsi.js" defer></script>
+    <script src="../assets/scripts/cadastropsicologo.js" defer></script>
+  </head>
 
-<body id="azulescuro">
-<div class="parte-1">
-    <a href="./escolha-perfil.html" class="voltar">
+  <body id="azulescuro">
+    <div class="parte-1">
+      <a href="./escolha-perfil.html" class="voltar">
         <div class="botao">
-        <img src="../assets/images/Seta esquerda.svg" alt="">
-        Voltar</div>
-    </a>
-</div>
-<div class="parte-2">
-    <div class="selecao">
+          <img src="../assets/images/Seta esquerda.svg" alt="" />
+          Voltar
+        </div>
+      </a>
+    </div>
+    <div class="parte-2">
+      <div class="selecao">
         <form>
-        <div class="linha-formulario">
+          <div class="linha-formulario">
             <div class="campo">
-                <label for="nome">Nome</label>
-                <input type="text" name="nome" placeholder="Digite seu nome ">
+              <label for="nome">Nome</label>
+              <input
+                type="text"
+                name="nome"
+                placeholder="Digite seu nome "
+                id="nome"
+              />
             </div>
             <div class="campo">
-                <label for="crp">CRP</label>
-                <input type="text" name="crp" placeholder="Digite seu crp">
+              <label for="crp">CRP</label>
+              <input
+                type="text"
+                name="crp"
+                placeholder="Digite seu crp"
+                id="crp"
+              />
             </div>
-        </div>
-        <div class="linha-formulario">
+          </div>
+          <div class="linha-formulario">
             <div class="campo">
-                <label for="email">Email</label>
-                <input type="text" name="email" placeholder="Digite seu email ">
+              <label for="email">Email</label>
+              <input
+                type="text"
+                name="email"
+                placeholder="Digite seu email "
+                id="email"
+              />
             </div>
             <div class="campo">
-                <label for="genero">Gênero</label>
-                <select name="genero">
-                    <option value="">Selecione uma opção</option>
-                    <option value="feminino">Feminino</option>
-                    <option value="masculino">Masculino</option>
-                    <option value="outro">Outro</option>
-                </select>
+              <label for="genero">Gênero</label>
+              <select name="genero" id="genero">
+                <option value="">Selecione uma opção</option>
+                <option value="feminino">Feminino</option>
+                <option value="masculino">Masculino</option>
+                <option value="outro">Outro</option>
+              </select>
             </div>
-        </div>
-        <div class="linha-formulario">
+          </div>
+          <div class="linha-formulario">
             <div class="campo">
-                <label for="senha">Senha</label>
-                <input type="password" name="senha" placeholder="Crie uma senha">
+              <label for="senha">Senha</label>
+              <input
+                type="password"
+                name="senha"
+                id="senha"
+                placeholder="Crie uma senha"
+              />
             </div>
             <button class="confirmar" type="submit" id="azulescuro">
-                Criar conta
+              Criar conta
             </button>
-        </div>
-        <div class="linha-formulario">
+          </div>
+          <div class="linha-formulario">
             <div class="campo">
-                <label for="confirmar">Confirme sua senha</label>
-                <input type="password" name="confirmar" placeholder="Digite sua senha novamente">
+              <label for="confirmar">Confirme sua senha</label>
+              <input
+                type="password"
+                name="confirmar"
+                class="confirmac"
+                placeholder="Digite sua senha novamente"
+              />
             </div>
-        </div>
+          </div>
         </form>
+      </div>
     </div>
-</div>
-</body>
+  </body>
 </html>

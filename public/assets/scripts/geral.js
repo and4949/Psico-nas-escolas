@@ -1,0 +1,3 @@
+function leave() {
+    localStorage.clear();
+  }
