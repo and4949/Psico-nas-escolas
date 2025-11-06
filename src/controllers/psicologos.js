@@ -11,6 +11,18 @@ rotaPsicologos.get("/psicologos", async function (req, res) {
 
 rotaPsicologos.post("/psicologos", async function (req, res) {
   const { nome, email, genero, crp, senha } = req.body;
+  const aluno = await db.aluno.findFirst({
+    where: {
+      email,
+    },
+  });
+
+  if (aluno) {
+    res.status(400).json({
+      mensagem: "Email já cadastrado",
+    });
+    return;
+  }
   const itens = await db.Psicologo.create({
     data: {
       email,

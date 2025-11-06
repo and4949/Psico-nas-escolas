@@ -4,6 +4,7 @@ const { rotaPsicologos } = require("./controllers/psicologos");
 const { rotaHorarios } = require("./controllers/horarios");
 const { rotaConsultas } = require("./controllers/consultas");
 const cors = require("cors");
+const { rotaLogin } = require("./controllers/login");
 const server = express();
 server.use(cors());
 server.use(express.json());
@@ -11,6 +12,7 @@ server.use(rotaAlunos);
 server.use(rotaPsicologos);
 server.use(rotaHorarios);
 server.use(rotaConsultas);
+server.use(rotaLogin);
 
 server.get("/", (req, res) => {
   res.send(200);

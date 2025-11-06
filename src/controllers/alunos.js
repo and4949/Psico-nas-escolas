@@ -4,14 +4,26 @@ const { db } = require("../db");
 const rotaAlunos = Router();
 
 rotaAlunos.get("/alunos", async function (req, res) {
-  const itens = await db.Aluno.findMany();
+  const itens = await db.aluno.findMany();
   console.log(itens);
   res.json(itens);
 });
 
 rotaAlunos.post("/alunos", async function (req, res) {
   const { nome, email, genero, matricula, senha, turma, escola } = req.body;
-  const itens = await db.Aluno.create({
+  const psicologo = await db.psicologo.findFirst({
+    where: {
+      email,
+    },
+  });
+
+  if (psicologo) {
+    res.status(400).json({
+      mensagem: "Email já cadastrado",
+    });
+    return;
+  }
+  const itens = await db.aluno.create({
     data: {
       email,
       nome,
@@ -28,7 +40,7 @@ rotaAlunos.post("/alunos", async function (req, res) {
 
 rotaAlunos.delete("/alunos/:id", async function (req, res) {
   const { id } = req.params;
-  const usuario = await db.Aluno.delete({
+  const usuario = await db.aluno.delete({
     where: { id: Number(id) },
   });
   console.log("Usuário deletado:", usuario);
@@ -38,7 +50,7 @@ rotaAlunos.delete("/alunos/:id", async function (req, res) {
 rotaAlunos.put("/alunos/:id", async function (req, res) {
   const { id } = req.params;
   const { nome, email, genero, matricula, senha, turma, escola } = req.body;
-  const usuario = await db.Aluno.update({
+  const usuario = await db.aluno.update({
     where: { id: Number(id) },
     data: {
       email,

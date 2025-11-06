@@ -35,7 +35,8 @@ form.addEventListener("submit", async function (event) {
       }
       const dados = await response.json();
       console.log("opa");
-      localStorage.setItem("login", dados["id"]);
+      localStorage.setItem("login", dados["email"]);
+      localStorage.setItem("senha", dados["senha"]);
 
       event.preventDefault();
     } catch (error) {
