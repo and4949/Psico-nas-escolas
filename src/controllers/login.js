@@ -15,7 +15,7 @@ rotaLogin.post("/api/login", async function (req, res) {
   });
   if (psicologo) {
     const token = jwt.sign({ id: psicologo.id }, chaveSecreta);
-    res.status(200).json({ token });
+    res.status(200).json({ token, tipo: "psicologo" });
     return;
   }
 
@@ -27,11 +27,11 @@ rotaLogin.post("/api/login", async function (req, res) {
   });
   if (aluno) {
     const token = jwt.sign({ id: aluno.id }, chaveSecreta);
-    res.status(200).json({ token });
+    res.status(200).json({ token, tipo: "aluno" });
     return;
   }
 
-  res.status(400).json({ mensagem: "Erro" });
+  res.status(401).json({ mensagem: "erro login" });
 });
 
 module.exports = { rotaLogin };
