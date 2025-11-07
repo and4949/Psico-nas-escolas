@@ -49,7 +49,14 @@ rotaAlunos.delete("/alunos/:id", async function (req, res) {
 });
 rotaAlunos.put("/alunos/:id", async function (req, res) {
   const { id } = req.params;
-  const { nome, email, genero, matricula, senha, turma, escola } = req.body;
+  let { nome, email, genero, matricula, senha, turma, escola, adm } = req.body;
+
+  if (adm == "true") {
+    adm = true;
+  } else {
+    adm = false;
+  }
+
   const usuario = await db.aluno.update({
     where: { id: Number(id) },
     data: {
@@ -60,6 +67,7 @@ rotaAlunos.put("/alunos/:id", async function (req, res) {
       senha,
       turma,
       escola,
+      adm,
     },
   });
   console.log("aluno atualizado");

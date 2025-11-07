@@ -19,13 +19,27 @@ rotaLogin.post("/api/login", async function (req, res) {
     return;
   }
 
+  const adm = await db.aluno.findFirst({
+    where: {
+      email,
+      senha,
+      adm: true,
+    },
+  });
+
   const aluno = await db.aluno.findFirst({
     where: {
       email,
       senha,
     },
   });
-  if (aluno) {
+
+  if (adm) {
+    const token = jwt.sign({ id: adm.id }, chaveSecreta);
+    res.status(200).json({ token, tipo: "adm" });
+    return;
+  }
+  if (aluno && !adm) {
     const token = jwt.sign({ id: aluno.id }, chaveSecreta);
     res.status(200).json({ token, tipo: "aluno" });
     return;

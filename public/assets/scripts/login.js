@@ -25,7 +25,9 @@ form.addEventListener("submit", async function (event) {
     const dados = await response.json();
     if (response.ok && dados.token) {
       localStorage.setItem("token", dados.token);
-      if (dados.tipo === "psicologo") {
+      if (dados.tipo === "adm") {
+        window.location.href = "./administrador.html";
+      } else if (dados.tipo === "psicologo") {
         window.location.href = "./psicologo-agenda.html";
       } else {
         window.location.href = "./aluno-agenda.html";
