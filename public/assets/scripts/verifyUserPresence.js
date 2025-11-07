@@ -9,6 +9,7 @@ if (localStorage.getItem("login") && localStorage.getItem("senha")) {
     };
     localStorage.clear();
     try {
+      //testelegal
       const options = {
         method: "POST",
         headers: {
