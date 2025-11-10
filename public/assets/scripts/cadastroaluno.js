@@ -38,8 +38,8 @@ form.addEventListener("submit", async function (event) {
       }
       const dados = await response.json();
       console.log("opa");
-      localStorage.setItem("login", dados["email"]);
-      localStorage.setItem("senha", dados["senha"]);
+      sessionStorage.setItem("login", dados["email"]);
+      sessionStorage.setItem("senha", dados["senha"]);
       window.location.href = "/aluno-agenda.html";
       event.preventDefault();
     } catch (error) {

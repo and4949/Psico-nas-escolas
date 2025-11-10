@@ -24,7 +24,11 @@ form.addEventListener("submit", async function (event) {
     );
     const dados = await response.json();
     if (response.ok && dados.token) {
-      localStorage.setItem("token", dados.token);
+      console.log(sessionStorage.length);
+
+      sessionStorage.setItem("token", dados.token);
+      console.log("foi");
+      console.log(sessionStorage.length);
       if (dados.tipo === "adm") {
         window.location.href = "./administrador.html";
       } else if (dados.tipo === "psicologo") {

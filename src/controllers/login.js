@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const { Router } = require("express");
 const { db } = require("../db");
-const { chaveSecreta } = require("../autentincar");
+const { chaveSecreta, autenticar } = require("../autentincar");
 
 const rotaLogin = Router();
 
@@ -46,6 +46,10 @@ rotaLogin.post("/api/login", async function (req, res) {
   }
 
   res.status(401).json({ mensagem: "erro login" });
+});
+
+rotaLogin.get("/api/verificartoken", autenticar, async function (req, res) {
+  res.status(201).send("sucesso");
 });
 
 module.exports = { rotaLogin };

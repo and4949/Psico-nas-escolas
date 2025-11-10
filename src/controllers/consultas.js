@@ -1,9 +1,10 @@
 const { Router } = require("express");
 const { db } = require("../db");
+const { autenticar } = require("../autentincar");
 
 const rotaConsultas = Router();
 
-rotaConsultas.get("/consultas", async function (req, res) {
+rotaConsultas.get("/consultas", autenticar, async function (req, res) {
   const itens = await db.Consulta.findMany();
   console.log(itens);
   res.json(itens);

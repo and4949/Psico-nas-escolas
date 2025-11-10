@@ -1,9 +1,10 @@
 const { Router } = require("express");
 const { db } = require("../db");
+const { autenticar } = require("../autentincar");
 
 const rotaAlunos = Router();
 
-rotaAlunos.get("/alunos", async function (req, res) {
+rotaAlunos.get("/alunos", autenticar, async function (req, res) {
   const itens = await db.aluno.findMany();
   console.log(itens);
   res.json(itens);

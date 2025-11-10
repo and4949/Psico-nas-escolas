@@ -1,13 +1,13 @@
 if (localStorage.getItem("login") && localStorage.getItem("senha")) {
   async function logar() {
-    const pemail = localStorage.getItem("login").value;
-    const psenha = localStorage.getItem("senha").value;
+    const pemail = sessionStorage.getItem("login").value;
+    const psenha = sessionStorage.getItem("senha").value;
 
     const postLogin = {
       email: pemail,
       senha: psenha,
     };
-    localStorage.clear();
+    sessionStorage.clear();
     try {
       //testelegal
       const options = {
@@ -24,7 +24,7 @@ if (localStorage.getItem("login") && localStorage.getItem("senha")) {
       );
       const dados = await response.json();
       if (response.ok && dados.token) {
-        localStorage.setItem("token", dados.token);
+        sessionStorage.setItem("token", dados.token);
         if (dados.tipo === "adm") {
           window.location.href = "./administrador.html";
         } else if (dados.tipo === "psicologo") {
