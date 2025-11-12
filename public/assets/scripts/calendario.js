@@ -55,14 +55,24 @@ async function criar_calendario() {
       semana.push(dia_atual);
       visual += `<button class="dia`;
       posicao = posicao + 1;
-      if (dia_atual.getMonth()+1<10){MV=`0${dia_atual.getMonth()+1}`}else{MV=`${dia_atual.getMonth()+1}`}
-      if (dia_atual.getDate()+1<10){DV=`0${dia_atual.getDate()}`}else{DV=`${dia_atual.getDate()}`}
-      let procurar =`${dia_atual.getFullYear()}-${MV}-${DV}`
+      if (dia_atual.getMonth() + 1 < 10) {
+        MV = `0${dia_atual.getMonth() + 1}`;
+      } else {
+        MV = `${dia_atual.getMonth() + 1}`;
+      }
+      if (dia_atual.getDate() < 10) {
+        DV = `0${dia_atual.getDate()}`;
+      } else {
+        DV = `${dia_atual.getDate()}`;
+      }
+      let procurar = `${dia_atual.getFullYear()}-${MV}-${DV}`;
       if (window.diasativos.includes(procurar)) {
         if (dia_atual.getMonth() !== window.dia_selecionado.getMonth()) {
-          visual += ` ativo-proximo-mes`
-        }else{visual += ` ativo`}
-      }else if (dia_atual.getMonth() !== window.dia_selecionado.getMonth()) {
+          visual += ` ativo-proximo-mes`;
+        } else {
+          visual += ` ativo`;
+        }
+      } else if (dia_atual.getMonth() !== window.dia_selecionado.getMonth()) {
         visual += ` proximo-mes`;
       }
       for (const algo of window.dias_selecionados) {
@@ -129,8 +139,8 @@ function avançarmes(x) {
     window.dia_selecionado.getMonth() + x,
     window.dia_selecionado.getDate()
   );
-  if (!window.multiselecao){
-    window.dias_selecionados=[window.dia_selecionado]
+  if (!window.multiselecao) {
+    window.dias_selecionados = [window.dia_selecionado];
   }
   criar_calendario();
 }
