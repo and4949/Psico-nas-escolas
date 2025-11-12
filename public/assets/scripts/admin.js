@@ -79,3 +79,4 @@ async function carregar() {
     console.error("Erro na requisição:", error.message);
   }
 }
+async function atualizarInfosSobre() {}

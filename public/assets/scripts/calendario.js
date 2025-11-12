@@ -10,9 +10,23 @@ async function verativos() {
         "Content-Type": "application/json",
       },
     };
-
+    let PrimeiroDoMes = new Date(
+      dia_selecionado.getFullYear(),
+      dia_selecionado.getMonth(),
+      1
+    );
+    let PrimeiroDiaCalendario = new Date(
+      dia_selecionado.getFullYear(),
+      dia_selecionado.getMonth(),
+      1 - PrimeiroDoMes.getDay()
+    );
+    let UltimoDiaCalendario = new Date(
+      PrimeiroDiaCalendario.getFullYear(),
+      PrimeiroDiaCalendario.getMonth(),
+      PrimeiroDiaCalendario.getDate() + 41
+    );
     const response = await fetch(
-      `https://2mkvsd-3000.csb.app/achar/horarios?comeco=2024-11-12&fim=2026-11-14`,
+      `https://2mkvsd-3000.csb.app/achar/horarios?comeco=${PrimeiroDiaCalendario.toISOString()}&fim=${UltimoDiaCalendario.toISOString()}`,
       options
     );
     if (!response.ok) {
@@ -20,9 +34,7 @@ async function verativos() {
     }
     const dados = await response.json();
     window.diasativos = dados.datasUnicas;
-  } catch (error) {
-    console.error("Erro na requisição:", error.message);
-  }
+  } catch (error) {}
 }
 
 function mudarmulti() {
@@ -66,6 +78,9 @@ async function criar_calendario() {
         DV = `${dia_atual.getDate()}`;
       }
       let procurar = `${dia_atual.getFullYear()}-${MV}-${DV}`;
+      if (!window.diasativos) {
+        window.diasativos = [];
+      }
       if (window.diasativos.includes(procurar)) {
         if (dia_atual.getMonth() !== window.dia_selecionado.getMonth()) {
           visual += ` ativo-proximo-mes`;

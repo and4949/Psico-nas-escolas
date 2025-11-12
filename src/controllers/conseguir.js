@@ -43,7 +43,7 @@ rotaConseguir.get("/achar/horarios", async function (req, res) {
     },
   });
   if (itens.length === 0) {
-    return res.status(404).json({ mensagem: "Nada encontrado" });
+    return res.json({ mensagem: "Nada encontrado" });
   }
 
   const datasUnicas = [
