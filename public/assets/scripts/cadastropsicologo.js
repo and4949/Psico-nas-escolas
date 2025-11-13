@@ -27,7 +27,7 @@ form.addEventListener("submit", async function (event) {
       };
 
       const response = await fetch(
-        "https://2mkvsd-3000.csb.app/psicologos",
+        "https://hdd5d7-3000.csb.app/psicologos",
         options
       );
       if (!response.ok) {

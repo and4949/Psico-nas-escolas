@@ -1,3 +1,5 @@
+window.pedido = "https://hdd5d7-3000.csb.app/achar/data/horarios";
+window.dia_selecionado = new Date();
 async function CriarHorarios() {
   const comeco = document.querySelector(".comeco");
   const fim = document.querySelector(".fim");
@@ -45,7 +47,7 @@ async function CriarHorarios() {
       };
 
       const response = await fetch(
-        "https://2mkvsd-3000.csb.app/horarios",
+        "https://hdd5d7-3000.csb.app/horarios",
         options
       );
       if (!response.ok) {
@@ -57,26 +59,52 @@ async function CriarHorarios() {
     }
   }
 }
-async function carregar() {
+
+async function atualizarlista() {
+  const datas_horarios = document.querySelector(".datas-horarios");
+  if (!window.multiselecao) {
+    datas_horarios.innerHTML = "";
+  }
   try {
     const options = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authenticate: "Bearer " + sessionStorage.getItem("token"),
       },
     };
     const response = await fetch(
-      "https://2mkvsd-3000.csb.app/horarios",
+      `https://hdd5d7-3000.csb.app/achar/horarios?comeco=${window.dia_selecionado.toISOString()}&fim=${window.dia_selecionado.toISOString()}`,
       options
     );
     if (!response.ok) {
       throw new Error(`Erro: ${response.status}`);
     }
     const dados = await response.json();
-    console.log(dados);
-  } catch (error) {
-    console.error("Erro na requisição:", error.message);
-  }
+    if (dados) {
+      for (item of dados.itens) {
+        let datacmc = new Date(item.comeco);
+        let datafm = new Date(item.fim);
+        let horascmc = datacmc.getHours();
+        let horasfm = datafm.getHours();
+        if (datacmc.getMinutes() < 10) {
+          minutoscmc = `0${datacmc.getMinutes()}`;
+        } else {
+          minutoscmc = datacmc.getMinutes();
+        }
+        if (datafm.getMinutes() < 10) {
+          minutosfm = `0${datafm.getMinutes()}`;
+        } else {
+          minutosfm = datafm.getMinutes();
+        }
+        datas_horarios.innerHTML += `<div class="hora">
+        <p>${horascmc}:${minutoscmc} até ${horasfm}:${minutosfm}</p>
+        <button onclick="atualizarInfosSobre(${item.id})"></button>
+    </div>`;
+      }
+    }
+  } catch (error) {}
 }
-async function atualizarInfosSobre() {}
+atualizarlista();
+async function atualizarInfosSobre(x) {
+  console.log(x);
+}

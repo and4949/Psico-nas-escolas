@@ -30,7 +30,7 @@ form.addEventListener("submit", async function (event) {
       };
 
       const response = await fetch(
-        "https://2mkvsd-3000.csb.app/alunos",
+        "https://hdd5d7-3000.csb.app/alunos",
         options
       );
       if (!response.ok) {

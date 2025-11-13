@@ -26,7 +26,9 @@ async function verativos() {
       PrimeiroDiaCalendario.getDate() + 41
     );
     const response = await fetch(
-      `https://2mkvsd-3000.csb.app/achar/horarios?comeco=${PrimeiroDiaCalendario.toISOString()}&fim=${UltimoDiaCalendario.toISOString()}`,
+      `${
+        window.pedido
+      }?comeco=${PrimeiroDiaCalendario.toISOString()}&fim=${UltimoDiaCalendario.toISOString()}`,
       options
     );
     if (!response.ok) {
@@ -99,7 +101,8 @@ async function criar_calendario() {
         }
       }
 
-      visual += `" onclick="selecionar(${dia_atual.getFullYear()},${dia_atual.getMonth()},${dia_atual.getDate()})">${dia_atual.getDate()}</button>`;
+      visual += `" onclick="selecionar(${dia_atual.getFullYear()},${dia_atual.getMonth()},${dia_atual.getDate()});
+      atualizarlista()">${dia_atual.getDate()}</button>`;
     }
     visual += `</div>`;
   }
@@ -143,7 +146,7 @@ function mudarmes() {
   ];
   let alternarmes = document.querySelector(".mes");
   alternarmes.innerHTML = `<button class="anomes" onclick="avançarmes(-1)"> <img src="../assets/images/arrow-left-solid-full 1.svg" alt=""> </button>
-    <button class="anomes" onclick="selecionarmes()"><p>${window.dia_selecionado.getFullYear()}/${
+    <button class="anomes" onclick="selecionarmes())"><p>${window.dia_selecionado.getFullYear()}/${
     meses[window.dia_selecionado.getMonth()]
   }</p></button>
     <button class="anomes" onclick="avançarmes(1)"> <img src="../assets/images/arrow-right-solid-full 1.svg" alt=""> </button>`;
