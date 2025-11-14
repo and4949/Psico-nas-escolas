@@ -1,5 +1,6 @@
 window.pedido = "https://hdd5d7-3000.csb.app/achar/horarios/datas";
 window.dia_selecionado = new Date();
+window.dias_selecionados = [window.dia_selecionado];
 async function CriarHorarios() {
   const comeco = document.querySelector(".comeco");
   const fim = document.querySelector(".fim");
@@ -62,57 +63,56 @@ async function mandarhorarios(diasS, horasC, minutosC, horasF, minutosF) {
     console.error("Erro na requisição:", error.message);
   }
 }
+window.listinha = [];
 async function atualizarlista() {
   const datas_horarios = document.querySelector(".datas-horarios");
-  if (!window.multiselecao) {
-    datas_horarios.innerHTML = "";
-    listinha = [];
-  }
-  try {
-    const options = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    const response = await fetch(
-      `https://hdd5d7-3000.csb.app/achar/horarios?comeco=${window.dia_selecionado.toISOString()}&fim=${window.dia_selecionado.toISOString()}`,
-      options
-    );
-    if (!response.ok) {
-      throw new Error(`Erro: ${response.status}`);
-    }
-    const dados = await response.json();
-    if (dados) {
-      for (item of dados.itens) {
-        let datacmc = new Date(item.comeco);
-        let datafm = new Date(item.fim);
-        let horascmc = datacmc.getHours();
-        let horasfm = datafm.getHours();
-        if (datacmc.getMinutes() < 10) {
-          minutoscmc = `0${datacmc.getMinutes()}`;
-        } else {
-          minutoscmc = datacmc.getMinutes();
-        }
-        if (datafm.getMinutes() < 10) {
-          minutosfm = `0${datafm.getMinutes()}`;
-        } else {
-          minutosfm = datafm.getMinutes();
-        }
-        if (!listinha.includes(item.id)) {
+  datas_horarios.innerHTML = ``;
+  for (const dias of window.dias_selecionados) {
+    try {
+      const options = {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const response = await fetch(
+        `https://hdd5d7-3000.csb.app/achar/horarios?comeco=${dias.toISOString()}&fim=${dias.toISOString()}`,
+        options
+      );
+      if (!response.ok) {
+        throw new Error(`Erro: ${response.status}`);
+      }
+      const dados = await response.json();
+      if (dados) {
+        for (item of dados.itens) {
+          let datacmc = new Date(item.comeco);
+          let datafm = new Date(item.fim);
+          let horascmc = datacmc.getHours();
+          let horasfm = datafm.getHours();
+          if (datacmc.getMinutes() < 10) {
+            minutoscmc = `0${datacmc.getMinutes()}`;
+          } else {
+            minutoscmc = datacmc.getMinutes();
+          }
+          if (datafm.getMinutes() < 10) {
+            minutosfm = `0${datafm.getMinutes()}`;
+          } else {
+            minutosfm = datafm.getMinutes();
+          }
           datas_horarios.innerHTML += `<div class="hora">
-        <p>${horascmc}:${minutoscmc} até ${horasfm}:${minutosfm}</p>
-        <button onclick="atualizarInfosSobre(${item.id})"></button>
-    </div>`;
-          listinha.push(item.id);
+          <p>${horascmc}:${minutoscmc} até ${horasfm}:${minutosfm} (${datacmc.getFullYear()}/${
+            datacmc.getMonth() + 1
+          }/${datacmc.getDate()})</p>
+          <button onclick="atualizarInfosSobre(${item.id})"></button>
+      </div>`;
         }
       }
-    }
-    const detalhes = document.querySelector(".detalhes");
-    detalhes.innerHTML = ``;
-  } catch (error) {}
+      const detalhes = document.querySelector(".detalhes");
+      detalhes.innerHTML = ``;
+    } catch (error) {}
+  }
 }
-atualizarlista();
+
 async function atualizarInfosSobre(x) {
   const detalhes = document.querySelector(".detalhes");
   detalhes.innerHTML = ``;
@@ -151,7 +151,39 @@ async function atualizarInfosSobre(x) {
                         <p>Psicologo:${dados.psicologonome}</p>
                     </div>`;
     } else {
-      detalhes.innerHTML = ` <div class="linha-detalhe"> <button class="deletar" onclick="deletar(${x})"> deletar</button> </div> nenhuma consulta encontrada`;
+      detalhes.innerHTML = ` <div class="nao-linha-detalhe"> <button class="deletar" onclick="deletar(${x})"> deletar</button> Nenhuma consulta encontrada</div> `;
     }
   } catch (error) {}
+}
+async function deletar(x) {
+  let options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const response = await fetch(
+    `https://hdd5d7-3000.csb.app/achar/consultas/horarios/${x}`,
+    options
+  );
+  const dados = await response.json();
+  if (dados.consulta) {
+    options = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    await fetch(
+      `https://hdd5d7-3000.csb.app/consultas/${dados.consulta.id}`,
+      options
+    );
+  }
+  options = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  await fetch(`https://hdd5d7-3000.csb.app/horarios/${x}`, options);
 }

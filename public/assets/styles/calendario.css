@@ -193,6 +193,11 @@
   flex-direction: row;
   padding-left: 10px;
 }
+.nao-linha-detalhe {
+  display: flex;
+  justify-content: space-evenly;
+  padding-left: 10px;
+}
 .linha-detalhe div {
   display: flex;
   padding-left: 10px;

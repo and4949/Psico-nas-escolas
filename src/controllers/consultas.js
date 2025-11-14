@@ -21,6 +21,13 @@ rotaConsultas.post("/consultas", async function (req, res) {
       avaliacao,
     },
   });
+  const horario = await db.Horario.update({
+    where: { id: horario_id },
+    data: {
+      status: 1,
+    },
+  });
+
   console.log(itens);
   res.json(itens);
 });
