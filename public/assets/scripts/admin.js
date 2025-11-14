@@ -148,7 +148,7 @@ async function atualizarInfosSobre(x) {
                 <div class="linha-detalhe">
                     <div>
                         <img src="../assets/images/Paciente.svg" alt="">
-                        <p>Psicologo:${dados.psicologonome}</p>
+                        <p>Psicologo:${dados.nomepsicologo}</p>
                     </div>`;
     } else {
       detalhes.innerHTML = ` <div class="nao-linha-detalhe"> <button class="deletar" onclick="deletar(${x})"> deletar</button> Nenhuma consulta encontrada</div> `;
@@ -187,3 +187,5 @@ async function deletar(x) {
   };
   await fetch(`https://hdd5d7-3000.csb.app/horarios/${x}`, options);
 }
+
+atualizarlista();

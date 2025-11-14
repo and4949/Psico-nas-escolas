@@ -51,6 +51,8 @@ rotaConseguir.get("/achar/horarios", async function (req, res) {
 });
 
 rotaConseguir.get("/achar/consultas/horarios/:id", async function (req, res) {
+  let alunoinfo = [];
+  let nomepsicologo = true;
   const { id } = req.params;
   const horario = await db.horario.findFirst({
     where: {
@@ -75,14 +77,16 @@ rotaConseguir.get("/achar/consultas/horarios/:id", async function (req, res) {
           id: parseInt(consulta.aluno_id),
         },
       });
-      alunoinfo = [aluno.nome, aluno.turma];
+      if (aluno) {
+        alunoinfo = [aluno.nome, aluno.turma];
+      } else {
+        alunoinfo = [null, null];
+      }
     }
   }
 
   res.status(200).json({ horario, consulta, alunoinfo, nomepsicologo });
 });
-
-module.exports = { rotaConseguir };
 
 rotaConseguir.get("/achar/horariosdisponiveis", async function (req, res) {
   const { comeco } = req.query;
@@ -137,15 +141,36 @@ rotaConseguir.get(
   }
 );
 
-rotaConseguir.get("/achar/horariosdisponiveis", async function (req, res) {
-  const itens = await db.consultas.findMany({
-    where: {
-      comeco: {
-        gte: inicio_mes,
-        lte: fim_mes,
+rotaConseguir.get(
+  "/achar/consultasdisponiveis/datas",
+  async function (req, res) {
+    const { comeco } = req.query;
+    const { fim } = req.query;
+    const inicio_mes = new Date(comeco);
+    inicio_mes.setHours(0, 0, 0, 0);
+    const fim_mes = new Date(fim);
+    fim_mes.setHours(23, 59, 59, 999);
+    const itens = await db.Consulta.findMany({
+      where: {
+        status: 0,
+        aluno_id: null,
+        horario: {
+          comeco: {
+            gte: inicio_mes,
+            lte: fim_mes,
+          },
+        },
       },
-      status: 0,
-    },
-  });
-  res.status(200).json({ itens });
-});
+      include: {
+        horario: true,
+      },
+    });
+    const datasUnicas = itens
+      .map((c) => c.horario.comeco.toISOString().split("T")[0])
+      .filter((value, index, self) => self.indexOf(value) === index); // remove duplicatas
+
+    res.status(200).json({ datasUnicas });
+  }
+);
+
+module.exports = { rotaConseguir };
