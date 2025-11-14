@@ -1,4 +1,3 @@
-// Consertar issoo!!!!!!!!!!!!!!!!!!!
 async function criarlateral(x) {
   infos = document.querySelector(".informações");
   infos.innerHTML = ``;
@@ -63,7 +62,7 @@ async function procurarconsultas() {
       },
     };
     const response = await fetch(
-      "https://hdd5d7-3000.csb.app/achar/consultas/criadas",
+      "https://hdd5d7-3000.csb.app/achar/consultas/participadas",
       options
     );
     const dados = await response.json();

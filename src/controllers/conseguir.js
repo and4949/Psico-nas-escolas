@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const { db } = require("../db");
+const { autenticar } = require("../autentincar");
 
 const rotaConseguir = Router();
 rotaConseguir.get("/achar/horarios/datas", async function (req, res) {
@@ -206,5 +207,87 @@ rotaConseguir.get("/achar/consultasdisponiveis", async function (req, res) {
   }
   res.status(200).json({ itens });
 });
+
+rotaConseguir.get(
+  "/achar/consultas/criadas",
+  autenticar,
+  async function (req, res) {
+    const id = req.decodificado.id;
+    const itens = await db.consulta.findMany({
+      where: {
+        psicologo_id: id,
+      },
+      include: {
+        horario: true,
+        psicologo: true,
+        aluno: {
+          select: {
+            id: true,
+            nome: true,
+          },
+        },
+      },
+    });
+    if (itens.length === 0) {
+      res.status(200).json();
+    }
+    res.status(200).json({ itens });
+  }
+);
+rotaConseguir.get("/achar/consultas/:id", async function (req, res) {
+  const { id } = req.params;
+  const item = await db.consulta.findFirst({
+    where: {
+      id: Number(id),
+    },
+    include: {
+      horario: true,
+      psicologo: {
+        select: {
+          id: true,
+          nome: true,
+        },
+      },
+      aluno: {
+        select: {
+          id: true,
+          nome: true,
+          turma: true,
+        },
+      },
+    },
+  });
+  if (!item) {
+    res.status(200).json();
+  }
+  res.status(200).json({ item });
+});
+
+rotaConseguir.get(
+  "/achar/consultas/participadas",
+  autenticar,
+  async function (req, res) {
+    const id = req.decodificado.id;
+    const itens = await db.consulta.findMany({
+      where: {
+        aluno_id: id,
+      },
+      include: {
+        horario: true,
+        psicologo: {
+          select: {
+            id: true,
+            nome: true,
+          },
+        },
+        aluno: true,
+      },
+    });
+    if (itens.length === 0) {
+      res.status(200).json();
+    }
+    res.status(200).json({ itens });
+  }
+);
 
 module.exports = { rotaConseguir };

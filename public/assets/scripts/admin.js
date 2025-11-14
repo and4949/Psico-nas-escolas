@@ -47,6 +47,7 @@ async function mandarhorarios(diasS, horasC, minutosC, horasF, minutosF) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authenticate: "Bearer " + sessionStorage.getItem("token"),
       },
       body: JSON.stringify(PostHorario),
     };

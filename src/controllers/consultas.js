@@ -42,14 +42,15 @@ rotaConsultas.delete("/consultas/:id", async function (req, res) {
 
   res.json({ mensagem: "Consulta deletado" });
 });
-rotaConsultas.put("/consultas/", autenticar, async function (req, res) {
-  const id = req.decodificado.id;
+rotaConsultas.put("/consultas/:id", autenticar, async function (req, res) {
+  const { id } = req.params;
+  const aluno = req.decodificado.id;
   const { psicologo_id, horario_id, aluno_id, nota, avaliacao, status } =
     req.body;
   const usuario = await db.Consulta.update({
     where: { id: Number(id) },
     data: {
-      aluno_id,
+      aluno_id : aluno,
       horario_id,
       psicologo_id,
       nota,
