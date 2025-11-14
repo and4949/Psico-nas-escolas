@@ -43,7 +43,6 @@ async function atualizarlista() {
 }
 async function Marcar(x) {
   const UpdateConsulta = {
-    aluno_id: 1, //????????????
     status: 1,
   };
   try {
@@ -51,6 +50,7 @@ async function Marcar(x) {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        Authenticate: "Bearer " + sessionStorage.getItem("token"),
       },
       body: JSON.stringify(UpdateConsulta),
     };

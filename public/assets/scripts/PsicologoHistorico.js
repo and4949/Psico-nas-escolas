@@ -18,5 +18,11 @@ consults.innerHTML = `<div class="consulta">
 </div>
 </div>`;*/
 async function procurarconsultas() {
-    
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+    await fetch("https://hdd5d7-3000.csb.app",options)
 }

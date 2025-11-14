@@ -10,8 +10,9 @@ rotaConsultas.get("/consultas", autenticar, async function (req, res) {
   res.json(itens);
 });
 
-rotaConsultas.post("/consultas", async function (req, res) {
+rotaConsultas.post("/consultas", autenticar, async function (req, res) {
   const { aluno_id, psicologo_id, horario_id, nota, avaliacao } = req.body;
+  const id = req.decodificado.id;
   const itens = await db.Consulta.create({
     data: {
       aluno_id,
@@ -41,8 +42,8 @@ rotaConsultas.delete("/consultas/:id", async function (req, res) {
 
   res.json({ mensagem: "Consulta deletado" });
 });
-rotaConsultas.put("/consultas/:id", async function (req, res) {
-  const { id } = req.params;
+rotaConsultas.put("/consultas/", autenticar, async function (req, res) {
+  const id = req.decodificado.id;
   const { psicologo_id, horario_id, aluno_id, nota, avaliacao, status } =
     req.body;
   const usuario = await db.Consulta.update({
