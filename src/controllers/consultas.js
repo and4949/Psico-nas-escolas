@@ -17,7 +17,7 @@ rotaConsultas.post("/consultas", autenticar, async function (req, res) {
     data: {
       aluno_id,
       horario_id,
-      psicologo_id,
+      psicologo_id: id,
       nota,
       avaliacao,
     },

@@ -69,7 +69,6 @@ async function Criarconsultas() {
 async function criarconsulta(x) {
   console.log(x);
   const PostConsulta = {
-    psicologo_id: 1, //???
     horario_id: x,
   };
   try {
@@ -77,6 +76,7 @@ async function criarconsulta(x) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authenticate: "Bearer " + sessionStorage.getItem("token"),
       },
       body: JSON.stringify(PostConsulta),
     };
