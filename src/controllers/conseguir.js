@@ -172,5 +172,39 @@ rotaConseguir.get(
     res.status(200).json({ datasUnicas });
   }
 );
+rotaConseguir.get("/achar/consultasdisponiveis", async function (req, res) {
+  const { comeco } = req.query;
+  const { fim } = req.query;
+  const inicio_mes = new Date(comeco);
+  inicio_mes.setHours(0, 0, 0, 0);
+  const fim_mes = new Date(fim);
+  fim_mes.setHours(23, 59, 59, 999);
+
+  const itens = await db.consulta.findMany({
+    where: {
+      status: 0,
+      aluno_id: null,
+      horario: {
+        comeco: {
+          gte: inicio_mes,
+          lte: fim_mes,
+        },
+      },
+    },
+    include: {
+      horario: true,
+      psicologo: {
+        select: {
+          id: true,
+          nome: true,
+        },
+      },
+    },
+  });
+  if (itens.length === 0) {
+    res.status(200).json();
+  }
+  res.status(200).json({ itens });
+});
 
 module.exports = { rotaConseguir };

@@ -93,3 +93,4 @@ async function criarconsulta(x) {
     console.error("Erro na requisição:", error.message);
   }
 }
+atualizarlista();
