@@ -1,7 +1,7 @@
-if (localStorage.getItem("login") && localStorage.getItem("senha")) {
+if (sessionStorage.getItem("login") && sessionStorage.getItem("senha")) {
   async function logar() {
-    const pemail = sessionStorage.getItem("login").value;
-    const psenha = sessionStorage.getItem("senha").value;
+    const pemail = sessionStorage.getItem("login");
+    const psenha = sessionStorage.getItem("senha");
 
     const postLogin = {
       email: pemail,
@@ -23,6 +23,7 @@ if (localStorage.getItem("login") && localStorage.getItem("senha")) {
         options
       );
       const dados = await response.json();
+      console.log("testelegal");
       if (response.ok && dados.token) {
         sessionStorage.setItem("token", dados.token);
         if (dados.tipo === "adm") {

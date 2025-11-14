@@ -16,8 +16,7 @@ form.addEventListener("submit", async function (event) {
     email: pemail.value,
     turma: pturma.value,
     matricula: pmatricula.value,
-    genero: pgenero.value,
-    escola: "Cedup",
+    genero: pgenero.value
   };
   if (psenha.value == pconfirmar.value) {
     try {

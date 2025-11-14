@@ -18,6 +18,6 @@ function autenticar(req, res, next) {
     res.status(401).send("Token invalido");
     return;
   }
-}
+} 
 
 module.exports = { autenticar, chaveSecreta };

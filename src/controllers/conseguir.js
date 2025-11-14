@@ -2,7 +2,7 @@ const { Router } = require("express");
 const { db } = require("../db");
 
 const rotaConseguir = Router();
-rotaConseguir.get("/achar/data/horarios", async function (req, res) {
+rotaConseguir.get("/achar/horarios/datas", async function (req, res) {
   const { comeco } = req.query;
   const { fim } = req.query;
   const inicio_mes = new Date(comeco);
@@ -47,8 +47,39 @@ rotaConseguir.get("/achar/horarios", async function (req, res) {
       },
     },
   });
-
   res.status(200).json({ itens });
+});
+
+rotaConseguir.get("/achar/consultas/horarios/:id", async function (req, res) {
+  const { id } = req.params;
+  const horario = await db.horario.findFirst({
+    where: {
+      id: parseInt(id),
+    },
+  });
+  const consulta = await db.consulta.findFirst({
+    where: {
+      horario_id: parseInt(id),
+    },
+  });
+  if (consulta) {
+    const psicologo = await db.psicologo.findFirst({
+      where: {
+        id: parseInt(consulta.psicologo_id),
+      },
+    });
+    nomepsicologo = psicologo.nome;
+    if (consulta.aluno_id) {
+      const aluno = await db.aluno.findFirst({
+        where: {
+          id: parseInt(consulta.aluno_id),
+        },
+      });
+      alunoinfo = [aluno.nome, aluno.turma];
+    }
+  }
+
+  res.status(200).json({ horario, consulta, alunoinfo, nomepsicologo });
 });
 
 module.exports = { rotaConseguir };

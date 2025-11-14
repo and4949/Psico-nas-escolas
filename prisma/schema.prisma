@@ -20,7 +20,6 @@ model Aluno {
   matricula String     @unique
   senha     String
   adm       Boolean    @default(false)
-  escola   String
   Consulta  Consulta[]
 }
 
@@ -39,7 +38,7 @@ model Horario {
   comeco   DateTime
   fim      DateTime
   status   Int @default(0)
-  Consulta Consulta[]
+  Consulta Consulta?
 }
 
 model Consulta {
@@ -49,7 +48,7 @@ model Consulta {
   psicologo    Psicologo @relation(fields: [psicologo_id], references: [id])
   psicologo_id Int
   horario      Horario   @relation(fields: [horario_id], references: [id])
-  horario_id   Int
+  horario_id   Int @unique
   nota         Int?
   avaliacao    String?
   status       Int	@default(0)
