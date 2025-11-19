@@ -234,6 +234,34 @@ rotaConseguir.get(
     res.status(200).json({ itens });
   }
 );
+
+rotaConseguir.get(
+  "/achar/consultas/participadas",
+  autenticar,
+  async function (req, res) {
+    const id = req.decodificado.id;
+    
+
+    const itens = await db.consulta.findMany({
+
+      where: {
+        aluno_id: id,
+      },
+      include: {
+        horario: true,
+        psicologo: {
+          select: {
+            id: true,
+            nome: true,
+          },
+        },
+        aluno: true,
+      },
+    });
+    res.status(200).json({ itens });
+  }
+);
+
 rotaConseguir.get("/achar/consultas/:id", async function (req, res) {
   const { id } = req.params;
   const item = await db.consulta.findFirst({
@@ -262,32 +290,5 @@ rotaConseguir.get("/achar/consultas/:id", async function (req, res) {
   }
   res.status(200).json({ item });
 });
-
-rotaConseguir.get(
-  "/achar/consultas/participadas",
-  autenticar,
-  async function (req, res) {
-    const id = req.decodificado.id;
-    const itens = await db.consulta.findMany({
-      where: {
-        aluno_id: id,
-      },
-      include: {
-        horario: true,
-        psicologo: {
-          select: {
-            id: true,
-            nome: true,
-          },
-        },
-        aluno: true,
-      },
-    });
-    if (itens.length === 0) {
-      res.status(200).json();
-    }
-    res.status(200).json({ itens });
-  }
-);
 
 module.exports = { rotaConseguir };

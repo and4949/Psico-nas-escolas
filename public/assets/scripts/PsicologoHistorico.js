@@ -44,7 +44,7 @@ async function criarlateral(x) {
         <p>Paciente: ${aluno}</p>
         <p>Turma: ${item.aluno ? item.aluno.turma : "-"}</p>
         <p>Profissional: ${item.psicologo.nome}</p>
-        <p>Consulta presencial ???</p>
+        <p>Consulta presencial ${item.status}</p>
       </div>`;
   } catch (err) {
     console.log("Erro:", err);

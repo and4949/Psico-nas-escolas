@@ -16,6 +16,7 @@
   justify-content: space-around;
   font-size: 26px;
   padding: 15px;
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .dias {
   width: 425px;
@@ -88,6 +89,7 @@
   padding: 29px;
   margin-bottom: 24px;
   margin-top: 24px;
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .opcao-dia {
   width: 569px;
@@ -178,6 +180,7 @@
   color: #050505;
   border: none;
   font-size: 24px;
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .detalhes {
   min-width: 626px;
@@ -187,6 +190,7 @@
   justify-content: center;
   background-color: #f5f5f5;
   border-radius: 18px;
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .linha-detalhe {
   display: flex;
@@ -214,6 +218,7 @@
   align-items: center;
   padding-left: 15px;
   font-size: 26px;
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .multipla-selecao button {
   width: 35px;

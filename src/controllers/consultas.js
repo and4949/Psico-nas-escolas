@@ -44,13 +44,17 @@ rotaConsultas.delete("/consultas/:id", async function (req, res) {
 });
 rotaConsultas.put("/consultas/:id", autenticar, async function (req, res) {
   const { id } = req.params;
-  const aluno = req.decodificado.id;
   const { psicologo_id, horario_id, aluno_id, nota, avaliacao, status } =
     req.body;
+  let aluno = aluno_id;
+  console.log(aluno);
+  if (!aluno_id) {
+    aluno = req.decodificado.id;
+  }
   const usuario = await db.Consulta.update({
     where: { id: Number(id) },
     data: {
-      aluno_id : aluno,
+      aluno_id: aluno,
       horario_id,
       psicologo_id,
       nota,

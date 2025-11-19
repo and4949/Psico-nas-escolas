@@ -68,6 +68,7 @@ window.listinha = [];
 async function atualizarlista() {
   const datas_horarios = document.querySelector(".datas-horarios");
   datas_horarios.innerHTML = ``;
+
   for (const dias of window.dias_selecionados) {
     try {
       const options = {
@@ -85,6 +86,23 @@ async function atualizarlista() {
       }
       const dados = await response.json();
       if (dados) {
+        const diasDaSemana = [
+          "Domingo",
+          "Segunda-feira",
+          "Terça-feira",
+          "Quarta-feira",
+          "Quinta-feira",
+          "Sexta-feira",
+          "Sábado",
+        ];
+        const semana_informacao = document.querySelector(".dia-semana");
+        let dataescolhida = new Date(dados.itens[0].comeco);
+        let semanaescolhida = diasDaSemana[dataescolhida.getDay()];
+        let diaescolhido = dataescolhida.getDate().toString().padStart(2, "0");
+        let mesescolhido = (dataescolhida.getMonth() + 1)
+          .toString()
+          .padStart(2, "0");
+        semana_informacao.innerHTML = `${semanaescolhida},/${diaescolhido}/${mesescolhido}/${dataescolhida.getFullYear()}`;
         for (item of dados.itens) {
           let datacmc = new Date(item.comeco);
           let datafm = new Date(item.fim);

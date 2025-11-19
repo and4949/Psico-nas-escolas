@@ -1,5 +1,8 @@
+ava = document.querySelector(".avaliacao");
+ava.innerHTML = `
+    `;
 async function criarlateral(x) {
-  infos = document.querySelector(".informações");
+  let infos = document.querySelector(".informações");
   infos.innerHTML = ``;
 
   try {
@@ -43,15 +46,48 @@ async function criarlateral(x) {
         <p>Paciente: ${aluno}</p>
         <p>Turma: ${item.aluno ? item.aluno.turma : "-"}</p>
         <p>Profissional: ${item.psicologo.nome}</p>
-        <p>Consulta presencial ???</p>
+        <p>Consulta presencial ${item.status}</p>
       </div>`;
+    let avaliacao = `<p class="tit">Avaliação do profissional</p>
+    <div class="estrelas">`;
+    window.nota = item.nota;
+    if (!item.nota) {
+      window.nota = 1;
+    }
+    let mudanota = 0;
+    let nota_demonstrativa = window.nota;
+    for (let i = 0; i < 5; i++) {
+      mudanota += 1;
+      if (nota_demonstrativa > 0) {
+        avaliacao += `<button onclick="mudarnota(${mudanota})"> 
+      <img src="../assets/images/estrela-azul.svg" alt="" />
+    </button>`;
+        nota_demonstrativa -= 1;
+      } else {
+        avaliacao += `<button onclick="mudarnota(${mudanota})">
+        <img src="../assets/images/estrela-vazia.svg" alt="" />
+      </button>`;
+      }
+    }
+    let comentario = item.avaliacao;
+    if (!item.avaliacao) {
+      comentario = "";
+    }
+
+    ava.innerHTML = `${avaliacao}
+    </div>
+    <p class="escrito">Sua avaliação é muito importante para a gente!!</p>
+
+    <input class="comentario" placeholder="Sem avaliação do profissional" value="${comentario}"/>
+    <button class="alerta" onclick="comentar(${item.id})">enviar</button>
+    `;
   } catch (err) {
     console.log("Erro:", err);
   }
 }
 
 async function procurarconsultas() {
-  consults = document.querySelector(".consultas");
+  let consults = document.querySelector(".consultas");
   consults.innerHTML = "";
   try {
     const options = {
@@ -105,3 +141,45 @@ async function procurarconsultas() {
 }
 procurarconsultas();
 /*;*/
+async function comentar(x) {
+  let comentario = document.querySelector(".comentario").value;
+  const UpdateConsulta = {
+    avaliacao: comentario,
+    nota: window.nota,
+  };
+  try {
+    const options = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authenticate: "Bearer " + sessionStorage.getItem("token"),
+      },
+      body: JSON.stringify(UpdateConsulta),
+    };
+    const response = await fetch(
+      `https://hdd5d7-3000.csb.app/consultas/${x}`,
+      options
+    );
+  } catch (error) {}
+}
+function mudarnota(x) {
+  let mudaestrelas = "";
+  let estrelas = document.querySelector(".estrelas");
+  window.nota = x;
+  let nota_demonstrativa = x;
+  let mudanota = 0;
+  for (let i = 0; i < 5; i++) {
+    mudanota += 1;
+    if (nota_demonstrativa > 0) {
+      mudaestrelas += `<button onclick="mudarnota(${mudanota})"> 
+    <img src="../assets/images/estrela-azul.svg" alt="" />
+  </button>`;
+      nota_demonstrativa -= 1;
+    } else {
+      mudaestrelas += `<button onclick="mudarnota(${mudanota})">
+      <img src="../assets/images/estrela-vazia.svg" alt="" />
+    </button>`;
+    }
+  }
+  estrelas.innerHTML = mudaestrelas;
+}
