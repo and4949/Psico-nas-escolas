@@ -1,5 +1,5 @@
 window.antigaselecao = "";
-window.pedido = "https://hdd5d7-3000.csb.app/achar/horarios/datas";
+window.pedido = "/achar/horarios/datas";
 window.dia_selecionado = new Date();
 window.dias_selecionados = [window.dia_selecionado];
 async function CriarHorarios() {
@@ -20,6 +20,7 @@ async function CriarHorarios() {
   for (const diasS of window.dias_selecionados) {
     await mandarhorarios(diasS, horasC, minutosC, horasF, minutosF);
   }
+  location.reload();
 }
 async function mandarhorarios(diasS, horasC, minutosC, horasF, minutosF) {
   const DataC = new Date(
@@ -53,10 +54,7 @@ async function mandarhorarios(diasS, horasC, minutosC, horasF, minutosF) {
       body: JSON.stringify(PostHorario),
     };
 
-    const response = await fetch(
-      "https://hdd5d7-3000.csb.app/horarios",
-      options
-    );
+    const response = await fetch("/horarios", options);
     if (!response.ok) {
       throw new Error(`Erro: ${response.status}`);
     }
@@ -79,7 +77,7 @@ async function atualizarlista() {
         },
       };
       const response = await fetch(
-        `https://hdd5d7-3000.csb.app/achar/horarios?comeco=${dias.toISOString()}&fim=${dias.toISOString()}`,
+        `/achar/horarios?comeco=${dias.toISOString()}&fim=${dias.toISOString()}`,
         options
       );
       if (!response.ok) {
@@ -162,10 +160,7 @@ async function atualizarInfosSobre(x) {
         "Content-Type": "application/json",
       },
     };
-    const response = await fetch(
-      `https://hdd5d7-3000.csb.app/achar/consultas/horarios/${x}`,
-      options
-    );
+    const response = await fetch(`/achar/consultas/horarios/${x}`, options);
     if (!response.ok) {
       throw new Error(`Erro: ${response.status}`);
     }
@@ -201,10 +196,7 @@ async function deletar(x) {
       "Content-Type": "application/json",
     },
   };
-  const response = await fetch(
-    `https://hdd5d7-3000.csb.app/achar/consultas/horarios/${x}`,
-    options
-  );
+  const response = await fetch(`/achar/consultas/horarios/${x}`, options);
   const dados = await response.json();
   if (dados.consulta) {
     options = {
@@ -213,10 +205,7 @@ async function deletar(x) {
         "Content-Type": "application/json",
       },
     };
-    await fetch(
-      `https://hdd5d7-3000.csb.app/consultas/${dados.consulta.id}`,
-      options
-    );
+    await fetch(`/consultas/${dados.consulta.id}`, options);
   }
   options = {
     method: "DELETE",
@@ -224,7 +213,8 @@ async function deletar(x) {
       "Content-Type": "application/json",
     },
   };
-  await fetch(`https://hdd5d7-3000.csb.app/horarios/${x}`, options);
+  await fetch(`/horarios/${x}`, options);
+  location.reload();
 }
 
 atualizarlista();

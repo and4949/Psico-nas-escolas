@@ -19,7 +19,7 @@ form.addEventListener("submit", async function (event) {
     };
 
     const response = await fetch(
-      "https://hdd5d7-3000.csb.app/api/login",
+      "/api/login",
       options
     );
     const dados = await response.json();
@@ -30,12 +30,13 @@ form.addEventListener("submit", async function (event) {
       console.log("foi");
       console.log(sessionStorage.length);
       if (dados.tipo === "adm") {
-        window.location.href = "./administrador.html";
+        window.location.href = "/administrador ";
       } else if (dados.tipo === "psicologo") {
-        window.location.href = "./psicologo-agenda.html";
+        window.location.href = "/psicologo-agenda ";
       } else {
-        window.location.href = "./aluno-agenda.html";
+        window.location.href = "/aluno-agenda ";
       }
+      location.reload();
     }
   } catch (error) {
     event.preventDefault();

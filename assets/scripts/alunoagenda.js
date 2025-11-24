@@ -1,4 +1,4 @@
-window.pedido = "https://hdd5d7-3000.csb.app/achar/consultasdisponiveis/datas";
+window.pedido = "/achar/consultasdisponiveis/datas";
 window.dias_selecionados = [new Date()];
 async function atualizarlista() {
   const datas_horarios = document.querySelector(".opcoes-dias");
@@ -12,7 +12,7 @@ async function atualizarlista() {
         },
       };
       const response = await fetch(
-        `https://hdd5d7-3000.csb.app/achar/consultasdisponiveis?comeco=${dias.toISOString()}&fim=${dias.toISOString()}`,
+        `/achar/consultasdisponiveis?comeco=${dias.toISOString()}&fim=${dias.toISOString()}`,
         options
       );
       if (!response.ok) {
@@ -55,9 +55,10 @@ async function Marcar(x) {
       body: JSON.stringify(UpdateConsulta),
     };
     const response = await fetch(
-      `https://hdd5d7-3000.csb.app/consultas/${x}`,
+      `/consultas/${x}`,
       options
     );
+    location.reload();
   } catch (error) {}
 }
 atualizarlista();

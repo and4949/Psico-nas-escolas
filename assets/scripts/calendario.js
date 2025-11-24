@@ -145,11 +145,11 @@ function mudarmes() {
     "Dezembro",
   ];
   let alternarmes = document.querySelector(".mes");
-  alternarmes.innerHTML = `<button class="anomes" onclick="avançarmes(-1)"> <img src="../assets/images/arrow-left-solid-full 1.svg" alt=""> </button>
+  alternarmes.innerHTML = `<button class="anomes" onclick="avançarmes(-1)"> <img src="/images/flecha-esquerda.svg" alt=""> </button>
     <button class="anomes" onclick="selecionarmes())"><p>${window.dia_selecionado.getFullYear()}/${
     meses[window.dia_selecionado.getMonth()]
   }</p></button>
-    <button class="anomes" onclick="avançarmes(1)"> <img src="../assets/images/arrow-right-solid-full 1.svg" alt=""> </button>`;
+    <button class="anomes" onclick="avançarmes(1)"> <img src="/images/flecha-direita.svg" alt=""> </button>`;
 }
 function avançarmes(x) {
   window.dia_selecionado = new Date(

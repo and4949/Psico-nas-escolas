@@ -1,4 +1,7 @@
 window.antigaselecao = "";
+ava = document.querySelector(".avaliacao");
+ava.innerHTML = `
+    `;
 async function criarlateral(x) {
   if (window.antigaselecao !== "") {
     const consultaa = document.querySelector(
@@ -15,12 +18,12 @@ async function criarlateral(x) {
 
   window.antigaselecao = `${x}`;
 
-  infos = document.querySelector(".informações");
+  let infos = document.querySelector(".informações");
   infos.innerHTML = ``;
 
   try {
     const response = await fetch(
-      `https://hdd5d7-3000.csb.app/achar/consultas/${x}`
+      `/achar/consultas/${x}`
     );
     const dados = await response.json();
     const item = dados.item;
@@ -50,54 +53,51 @@ async function criarlateral(x) {
     const dia = date.getDate().toString().padStart(2, "0");
     const mes = (date.getMonth() + 1).toString().padStart(2, "0");
     const ano = date.getFullYear();
+
     infos.innerHTML = `
       <div class="p28px">
-        <p>${semana}, ${ano}/${mes}/${dia} às ${horas}:${minutos}</p>
+        <p>${semana}, ${dia}/${mes}/${ano} às ${horas}:${minutos}</p>
       </div>
       <div class="titulo">
         <p>Paciente: ${aluno}</p>
         <p>Turma: ${item.aluno ? item.aluno.turma : "-"}</p>
         <p>Profissional: ${item.psicologo.nome}</p>
-        `;
-    infos.innerHTML += `</div>`;
-    let aval = document.querySelector(".alertaava");
-    aval.innerHTML = "";
-    if (item.status === 2) {
-      aval.innerHTML = `
-    <div class="texto-alerta" style="
-    text-size|: ;
-    text-size|: ;
-    text-size|:  2;
-    text-size|: ;
-    font-size: 24px;
-    margin-bottom: 5px;
-">
-    <p>A função “alerta” serve para casos:</p>
-    <p>1- Risco de autoagressão ou agressão a </p>
-    <p>terceiros</p>
-    <p>2- Risco de qualquer tipo de abuso</p>
-    <p>3- Risco de negligencia grave</p>
-    </div>
-    <button class="alerta" onclick="mudarstatus(${x},3,${item.aluno.id})">Alerta!</button>`;
+        <p>Consulta presencial ${item.status}</p>
+      </div>`;
+    let avaliacao = `<p class="tit">Avaliação do profissional</p>
+    <div class="estrelas">`;
+    window.nota = item.nota;
+    if (!item.nota) {
+      window.nota = 1;
     }
+    let mudanota = 0;
+    let nota_demonstrativa = window.nota;
+    for (let i = 0; i < 5; i++) {
+      mudanota += 1;
+      if (nota_demonstrativa > 0) {
+        avaliacao += `<button onclick="mudarnota(${mudanota})"> 
+      <img src="../assets/images/estrela-azul.svg" alt="" />
+    </button>`;
+        nota_demonstrativa -= 1;
+      } else {
+        avaliacao += `<button onclick="mudarnota(${mudanota})">
+        <img src="../assets/images/estrela-vazia.svg" alt="" />
+      </button>`;
+      }
+    }
+    let comentario = item.avaliacao;
+    if (!item.avaliacao) {
+      comentario = "";
+    }
+    ava.innerHTML = `${avaliacao}
+    </div>
+    <p class="escrito">Sua avaliação é muito importante para a gente!!</p>
+
+    <input class="comentario" placeholder="Sem avaliação do profissional" value="${comentario}"/>
+    <button class="enviar" onclick="comentar(${item.id})">Enviar</button>
+    `;
     if (item.status === 1) {
-      let aval = document.querySelector(".alertaava");
-      aval.innerHTML = `
-    <div class="texto-alerta" style="
-    text-size|: ;
-    text-size|: ;
-    text-size|:  2;
-    text-size|: ;
-    font-size: 24px;
-    margin-bottom: 5px;
-">
-    <p>Concluir Consulta</p>
-    </div>
-    <button class="enviar" onclick="mudarstatus(${x},2,${item.aluno.id})">Concluir</button>`;
-    }
-    if (item.status === 0) {
-      let aval = document.querySelector(".alertaava");
-      aval.innerHTML = ``;
+      ava.innerHTML = "";
     }
   } catch (err) {
     console.log("Erro:", err);
@@ -105,7 +105,7 @@ async function criarlateral(x) {
 }
 
 async function procurarconsultas() {
-  consults = document.querySelector(".consultas");
+  let consults = document.querySelector(".consultas");
   consults.innerHTML = "";
   try {
     const options = {
@@ -116,7 +116,7 @@ async function procurarconsultas() {
       },
     };
     const response = await fetch(
-      "https://hdd5d7-3000.csb.app/achar/consultas/criadas",
+      "/achar/consultas/participadas",
       options
     );
     const dados = await response.json();
@@ -144,20 +144,12 @@ async function procurarconsultas() {
       mes = (date.getMonth() + 1).toString().padStart(2, "0");
       ano = date.getFullYear();
       let teste = "";
-      switch (item.status) {
-        case 0:
-          teste = "Vazio";
-          break;
-        case 1:
-          teste = "Agendado";
-          break;
-        case 2:
-          teste = "Concluido";
-          break;
-        case 3:
-          teste = "Alertado";
-          break;
+      if (item.status === 1) {
+        teste = "Agendado";
+      } else {
+        teste = "Concluido";
       }
+
       consults.innerHTML += `<div class="consulta consulta${item.id}" onclick="criarlateral(${item.id})">
       <div class="nova">
       <div class="status status-${teste}">
@@ -179,10 +171,11 @@ async function procurarconsultas() {
 }
 procurarconsultas();
 /*;*/
-async function mudarstatus(x, status, aluno) {
+async function comentar(x) {
+  let comentario = document.querySelector(".comentario").value;
   const UpdateConsulta = {
-    status: status,
-    aluno_id: aluno,
+    avaliacao: comentario,
+    nota: window.nota,
   };
   try {
     const options = {
@@ -194,8 +187,29 @@ async function mudarstatus(x, status, aluno) {
       body: JSON.stringify(UpdateConsulta),
     };
     const response = await fetch(
-      `https://hdd5d7-3000.csb.app/consultas/${x}`,
+      `/consultas/${x}`,
       options
     );
   } catch (error) {}
+}
+function mudarnota(x) {
+  let mudaestrelas = "";
+  let estrelas = document.querySelector(".estrelas");
+  window.nota = x;
+  let nota_demonstrativa = x;
+  let mudanota = 0;
+  for (let i = 0; i < 5; i++) {
+    mudanota += 1;
+    if (nota_demonstrativa > 0) {
+      mudaestrelas += `<button onclick="mudarnota(${mudanota})"> 
+    <img src="../assets/images/estrela-azul.svg" alt="" />
+  </button>`;
+      nota_demonstrativa -= 1;
+    } else {
+      mudaestrelas += `<button onclick="mudarnota(${mudanota})">
+      <img src="../assets/images/estrela-vazia.svg" alt="" />
+    </button>`;
+    }
+  }
+  estrelas.innerHTML = mudaestrelas;
 }

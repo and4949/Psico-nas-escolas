@@ -28,7 +28,7 @@ form.addEventListener("submit", async function (event) {
       };
 
       const response = await fetch(
-        "https://hdd5d7-3000.csb.app/psicologos",
+        "/psicologos",
         options
       );
       if (!response.ok) {
@@ -40,6 +40,7 @@ form.addEventListener("submit", async function (event) {
       sessionStorage.setItem("senha", dados["senha"]);
 
       event.preventDefault();
+      location.reload();
     } catch (error) {
       event.preventDefault();
       console.error("Erro na requisição:", error.message);

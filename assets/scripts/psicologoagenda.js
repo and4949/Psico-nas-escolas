@@ -1,4 +1,4 @@
-window.pedido = "https://hdd5d7-3000.csb.app/achar/horariosdisponiveis/datas";
+window.pedido = "/achar/horariosdisponiveis/datas";
 window.dia_selecionado = new Date();
 let selecaohoras = [];
 async function atualizarlista() {
@@ -13,7 +13,7 @@ async function atualizarlista() {
       },
     };
     const response = await fetch(
-      `https://hdd5d7-3000.csb.app/achar/horariosdisponiveis?comeco=${window.dia_selecionado.toISOString()}&fim=${window.dia_selecionado.toISOString()}`,
+      `/achar/horariosdisponiveis?comeco=${window.dia_selecionado.toISOString()}&fim=${window.dia_selecionado.toISOString()}`,
       options
     );
     if (!response.ok) {
@@ -82,13 +82,14 @@ async function criarconsulta(x) {
     };
 
     const response = await fetch(
-      "https://hdd5d7-3000.csb.app/consultas",
+      "/consultas",
       options
     );
     if (!response.ok) {
       throw new Error(`Erro: ${response.status}`);
     }
     const dados = await response.json();
+    location.reload();
   } catch (error) {
     console.error("Erro na requisição:", error.message);
   }

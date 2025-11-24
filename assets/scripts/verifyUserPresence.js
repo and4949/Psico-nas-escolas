@@ -18,20 +18,17 @@ if (sessionStorage.getItem("login") && sessionStorage.getItem("senha")) {
         body: JSON.stringify(postLogin),
       };
 
-      const response = await fetch(
-        "https://hdd5d7-3000.csb.app/api/login",
-        options
-      );
+      const response = await fetch("/api/login", options);
       const dados = await response.json();
       console.log("testelegal");
       if (response.ok && dados.token) {
         sessionStorage.setItem("token", dados.token);
         if (dados.tipo === "adm") {
-          window.location.href = "./administrador.html";
+          window.location.href = "/administrador";
         } else if (dados.tipo === "psicologo") {
-          window.location.href = "./psicologo-agenda.html";
+          window.location.href = "/psicologo-agenda";
         } else {
-          window.location.href = "./aluno-agenda.html";
+          window.location.href = "/aluno-agenda";
         }
       }
     } catch (error) {

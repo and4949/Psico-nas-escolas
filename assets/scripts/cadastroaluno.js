@@ -16,7 +16,7 @@ form.addEventListener("submit", async function (event) {
     email: pemail.value,
     turma: pturma.value,
     matricula: pmatricula.value,
-    genero: pgenero.value
+    genero: pgenero.value,
   };
   if (psenha.value == pconfirmar.value) {
     try {
@@ -28,10 +28,7 @@ form.addEventListener("submit", async function (event) {
         body: JSON.stringify(postAluno),
       };
 
-      const response = await fetch(
-        "https://hdd5d7-3000.csb.app/alunos",
-        options
-      );
+      const response = await fetch("/alunos", options);
       if (!response.ok) {
         throw new Error(`Erro: ${response.status}`);
       }
@@ -39,8 +36,9 @@ form.addEventListener("submit", async function (event) {
       console.log("opa");
       sessionStorage.setItem("login", dados["email"]);
       sessionStorage.setItem("senha", dados["senha"]);
-      window.location.href = "/aluno-agenda.html";
+      window.location.href = "/aluno-agenda";
       event.preventDefault();
+      location.reload();
     } catch (error) {
       event.preventDefault();
       console.error("Erro na requisição:", error.message);
