@@ -47,7 +47,7 @@ function mudarmulti() {
     botaomulti.style.backgroundColor = "#cad4e9";
   } else {
     window.multiselecao = true;
-    botaomulti.style.border = "5px solid #2763e5";
+    botaomulti.style.border = "5px solid #81aff4";
     botaomulti.style.backgroundColor = "#F5F5F5";
   }
 }
