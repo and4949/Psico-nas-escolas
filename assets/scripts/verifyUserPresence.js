@@ -31,6 +31,7 @@ if (sessionStorage.getItem("login") && sessionStorage.getItem("senha")) {
           window.location.href = "/aluno-agenda";
         }
       }
+      
     } catch (error) {
       event.preventDefault();
       console.error("Erro na requisição:", error.message);

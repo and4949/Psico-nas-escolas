@@ -18,10 +18,7 @@ form.addEventListener("submit", async function (event) {
       body: JSON.stringify(postLogin),
     };
 
-    const response = await fetch(
-      "/api/login",
-      options
-    );
+    const response = await fetch("/api/login", options);
     const dados = await response.json();
     if (response.ok && dados.token) {
       console.log(sessionStorage.length);
@@ -36,7 +33,6 @@ form.addEventListener("submit", async function (event) {
       } else {
         window.location.href = "/aluno-agenda ";
       }
-      location.reload();
     }
   } catch (error) {
     event.preventDefault();
