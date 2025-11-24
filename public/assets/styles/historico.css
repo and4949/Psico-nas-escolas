@@ -13,7 +13,9 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 39px;
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
 }
+
 .info {
   display: flex;
   font-size: 24px;
@@ -26,8 +28,6 @@
   vertical-align: middle;
   font-style: Medium;
   margin-left: 28px;
-  margin-bottom: 23px;
-  margin-top: 16px;
 }
 .icone {
   width: 24px;
@@ -95,13 +95,16 @@
   justify-content: center;
 }
 .alerta {
-  width: 201px;
-  height: 34px;
+  width: 252px;
+  height: 32px;
   border-radius: 18px;
-  background-color: #2763e5;
+  background-color: #e52727;
   border: none;
   color: #f5f5f5;
   font-size: 24px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 .estrelas button {
   background: none;
@@ -115,4 +118,53 @@
 }
 .area {
   overflow: hidden;
+}
+.nova {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+.status {
+  width: 252px;
+  height: 32px;
+  border-radius: 18px;
+  background-color: #2763e5;
+  border: none;
+  color: #f5f5f5;
+  font-size: 24px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.alertaava {
+  width: 560px;
+  height: 232px;
+  background-color: #d9d9d9;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  justify-content: center;
+  align-items: center;
+}
+.enviar {
+  width: 252px;
+  height: 32px;
+  border-radius: 18px;
+  background-color: #2763e5;
+  border: none;
+  color: #f5f5f5;
+  font-size: 24px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.status-Vazio {
+  background-color: #5c6270;
+}
+.status-Concluido {
+  background-color: #81aff4;
+}
+.status-Alertado {
+  background-color: #e52727;
 }

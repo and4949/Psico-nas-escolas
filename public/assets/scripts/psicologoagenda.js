@@ -21,7 +21,6 @@ async function atualizarlista() {
     }
     const dados = await response.json();
     for (const item of dados.itens) {
-      console.log(item);
       let datacmc = new Date(item.comeco);
       let datafm = new Date(item.fim);
       let horascmc = datacmc.getHours();
@@ -36,7 +35,7 @@ async function atualizarlista() {
       } else {
         minutosfm = datafm.getMinutes();
       }
-      datas_horarios.innerHTML += `<div class="hora">
+      datas_horarios.innerHTML += `<div class="hora hora${item.id}">
         <p>${horascmc}:${minutoscmc} até ${horasfm}:${minutosfm}</p>
         <button class="botao${item.id}" onclick="selecaohora(${item.id})"></button>
       </div>`;
@@ -44,17 +43,19 @@ async function atualizarlista() {
   } catch (error) {}
 }
 async function selecaohora(x) {
-  console.log(x);
   let botao = document.querySelector(`.botao${x}`);
+  let horax = document.querySelector(`.hora${x}`);
   if (!selecaohoras.includes(x)) {
-    botao.style.border = "5px solid #2763e5";
+    botao.style.border = "5px solid #81aff4";
     botao.style.backgroundColor = "#F5F5F5";
     selecaohoras.push(x);
+    horax.style.backgroundColor = "#F5F5F5";
   } else {
     botao.style = "";
     let indice = selecaohoras.indexOf(x);
     if (indice > -1) {
       selecaohoras.splice(indice, 1);
+      horax.style.backgroundColor = "#CAD4E9";
     }
   }
 }
@@ -67,7 +68,6 @@ async function Criarconsultas() {
 }
 
 async function criarconsulta(x) {
-  console.log(x);
   const PostConsulta = {
     horario_id: x,
   };

@@ -1,7 +1,23 @@
+window.antigaselecao = "";
 ava = document.querySelector(".avaliacao");
 ava.innerHTML = `
     `;
 async function criarlateral(x) {
+  if (window.antigaselecao !== "") {
+    const consultaa = document.querySelector(
+      `.consulta${window.antigaselecao}`
+    );
+    consultaa.style.backgroundColor = "#F5F5F5";
+    consultaa.style.boxShadow = "2px 4px 4px rgba(0, 0, 0, 0.25)";
+    window.antigaselecao = `${x}`;
+  }
+
+  const consultab = document.querySelector(`.consulta${x}`);
+  consultab.style.backgroundColor = "#CAD4E9";
+  consultab.style.boxShadow = "none";
+
+  window.antigaselecao = `${x}`;
+
   let infos = document.querySelector(".informações");
   infos.innerHTML = ``;
 
@@ -73,14 +89,16 @@ async function criarlateral(x) {
     if (!item.avaliacao) {
       comentario = "";
     }
-
     ava.innerHTML = `${avaliacao}
     </div>
     <p class="escrito">Sua avaliação é muito importante para a gente!!</p>
 
     <input class="comentario" placeholder="Sem avaliação do profissional" value="${comentario}"/>
-    <button class="alerta" onclick="comentar(${item.id})">enviar</button>
+    <button class="enviar" onclick="comentar(${item.id})">Enviar</button>
     `;
+    if (item.status === 1) {
+      ava.innerHTML = "";
+    }
   } catch (err) {
     console.log("Erro:", err);
   }
@@ -125,7 +143,19 @@ async function procurarconsultas() {
       dia = date.getDate().toString().padStart(2, "0");
       mes = (date.getMonth() + 1).toString().padStart(2, "0");
       ano = date.getFullYear();
-      consults.innerHTML += `<div class="consulta" onclick="criarlateral(${item.id})">
+      let teste = "";
+      if (item.status === 1) {
+        teste = "Agendado";
+      } else {
+        teste = "Concluido";
+      }
+
+      consults.innerHTML += `<div class="consulta consulta${item.id}" onclick="criarlateral(${item.id})">
+      <div class="nova">
+      <div class="status status-${teste}">
+      ${teste}
+      </div>
+      </div>
 <div class="titulo">
   <p>${semana}, ${ano}/${mes}/${dia} às ${horas}:${minutos}</p>
 </div>

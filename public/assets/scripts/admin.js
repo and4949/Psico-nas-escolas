@@ -1,3 +1,4 @@
+window.antigaselecao = ""
 window.pedido = "https://hdd5d7-3000.csb.app/achar/horarios/datas";
 window.dia_selecionado = new Date();
 window.dias_selecionados = [window.dia_selecionado];
@@ -118,7 +119,7 @@ async function atualizarlista() {
           } else {
             minutosfm = datafm.getMinutes();
           }
-          datas_horarios.innerHTML += `<div class="hora">
+          datas_horarios.innerHTML += `<div class="hora horan${item.id}">
           <p>${horascmc}:${minutoscmc} até ${horasfm}:${minutosfm} (${datacmc.getFullYear()}/${
             datacmc.getMonth() + 1
           }/${datacmc.getDate()})</p>
@@ -133,6 +134,22 @@ async function atualizarlista() {
 }
 
 async function atualizarInfosSobre(x) {
+  if (!window.antigaselecao === ``){
+  const horanxa = document.querySelector(`.horan${window.antigaselecao}`);
+  const botaonxa = document.querySelector(`.horan${window.antigaselecao} button`);
+  horanxa.style.backgroundColor = "#CAD4E9";
+  botaonxa.style.backgroundColor = `#CAD4E9`
+  botaonxa.style.border = "10px solid #81aff4"
+  window.antigaselecao = `${x}`
+}
+
+  const horanx = document.querySelector(`.horan${x}`);
+  const botaonx = document.querySelector(`.horan${x} button`);
+  horanx.style.backgroundColor = "#F5F5F5";
+  botaonx.style.backgroundColor = `#F5F5F5`
+  botaonx.style.border = "5px solid #81aff4"
+  window.antigaselecao = `${x}`
+  
   const detalhes = document.querySelector(".detalhes");
   detalhes.innerHTML = ``;
   try {
