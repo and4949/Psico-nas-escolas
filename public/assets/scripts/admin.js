@@ -1,4 +1,4 @@
-window.antigaselecao = ""
+window.antigaselecao = "";
 window.pedido = "https://hdd5d7-3000.csb.app/achar/horarios/datas";
 window.dia_selecionado = new Date();
 window.dias_selecionados = [window.dia_selecionado];
@@ -103,7 +103,7 @@ async function atualizarlista() {
         let mesescolhido = (dataescolhida.getMonth() + 1)
           .toString()
           .padStart(2, "0");
-        semana_informacao.innerHTML = `${semanaescolhida},/${diaescolhido}/${mesescolhido}/${dataescolhida.getFullYear()}`;
+        semana_informacao.innerHTML = `${semanaescolhida},${diaescolhido}/${mesescolhido}/${dataescolhida.getFullYear()}`;
         for (item of dados.itens) {
           let datacmc = new Date(item.comeco);
           let datafm = new Date(item.fim);
@@ -120,9 +120,9 @@ async function atualizarlista() {
             minutosfm = datafm.getMinutes();
           }
           datas_horarios.innerHTML += `<div class="hora horan${item.id}">
-          <p>${horascmc}:${minutoscmc} até ${horasfm}:${minutosfm} (${datacmc.getFullYear()}/${
+          <p>${horascmc}:${minutoscmc} até ${horasfm}:${minutosfm} (${datacmc.getDate()}/${
             datacmc.getMonth() + 1
-          }/${datacmc.getDate()})</p>
+          }/${datacmc.getFullYear()})</p>
           <button onclick="atualizarInfosSobre(${item.id})"></button>
       </div>`;
         }
@@ -134,22 +134,25 @@ async function atualizarlista() {
 }
 
 async function atualizarInfosSobre(x) {
-  if (!window.antigaselecao === ``){
-  const horanxa = document.querySelector(`.horan${window.antigaselecao}`);
-  const botaonxa = document.querySelector(`.horan${window.antigaselecao} button`);
-  horanxa.style.backgroundColor = "#CAD4E9";
-  botaonxa.style.backgroundColor = `#CAD4E9`
-  botaonxa.style.border = "10px solid #81aff4"
-  window.antigaselecao = `${x}`
-}
+  if (window.antigaselecao !== "") {
+    const horanxa = document.querySelector(`.horan${window.antigaselecao}`);
+    const botaonxa = document.querySelector(
+      `.horan${window.antigaselecao} button`
+    );
+    if (horanxa) {
+      horanxa.style.backgroundColor = "#CAD4E9";
+      botaonxa.style.backgroundColor = `#CAD4E9`;
+      botaonxa.style.border = "10px solid #81aff4";
+    }
+  }
 
   const horanx = document.querySelector(`.horan${x}`);
   const botaonx = document.querySelector(`.horan${x} button`);
   horanx.style.backgroundColor = "#F5F5F5";
-  botaonx.style.backgroundColor = `#F5F5F5`
-  botaonx.style.border = "5px solid #81aff4"
-  window.antigaselecao = `${x}`
-  
+  botaonx.style.backgroundColor = `#F5F5F5`;
+  botaonx.style.border = "5px solid #81aff4";
+  window.antigaselecao = `${x}`;
+
   const detalhes = document.querySelector(".detalhes");
   detalhes.innerHTML = ``;
   try {
@@ -170,12 +173,12 @@ async function atualizarInfosSobre(x) {
     if (dados.consulta) {
       detalhes.innerHTML = `
       <div class="linha-detalhe">
-                        <button class="deletar" onclick="deletar(${x})"> deletar</button>
+                        <button class="deletar" onclick="Deletar(${x})"> deletar</button>
                 </div>
                 <div class="linha-detalhe">
                     <div>
                         <img src="../assets/images/Paciente.svg" alt="">
-                        <p>${dados.alunoinfo[0]}:</p>
+                        <p>Aluno:${dados.alunoinfo[0]}</p>
                     </div>
                     <div>
                         <p>Turma:${dados.alunoinfo[1]}</p>
@@ -187,7 +190,7 @@ async function atualizarInfosSobre(x) {
                         <p>Psicologo:${dados.nomepsicologo}</p>
                     </div>`;
     } else {
-      detalhes.innerHTML = ` <div class="nao-linha-detalhe"> <button class="deletar" onclick="deletar(${x})"> deletar</button> Nenhuma consulta encontrada</div> `;
+      detalhes.innerHTML = ` <div class="nao-linha-detalhe"> <button class="deletar" onclick="deletar(${x})"> Deletar</button> Nenhuma consulta encontrada</div> `;
     }
   } catch (error) {}
 }

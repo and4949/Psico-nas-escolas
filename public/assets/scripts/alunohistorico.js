@@ -56,7 +56,7 @@ async function criarlateral(x) {
 
     infos.innerHTML = `
       <div class="p28px">
-        <p>${semana}, ${ano}/${mes}/${dia} às ${horas}:${minutos}</p>
+        <p>${semana}, ${dia}/${mes}/${ano} às ${horas}:${minutos}</p>
       </div>
       <div class="titulo">
         <p>Paciente: ${aluno}</p>
@@ -157,7 +157,7 @@ async function procurarconsultas() {
       </div>
       </div>
 <div class="titulo">
-  <p>${semana}, ${ano}/${mes}/${dia} às ${horas}:${minutos}</p>
+  <p>${semana}, ${dia}/${mes}/${ano} às ${horas}:${minutos}</p>
 </div>
 <div class="info">
   <div class="icone">

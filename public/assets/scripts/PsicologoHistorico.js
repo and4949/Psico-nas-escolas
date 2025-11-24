@@ -60,9 +60,9 @@ async function criarlateral(x) {
         <p>Profissional: ${item.psicologo.nome}</p>
         `;
     infos.innerHTML += `</div>`;
-
+    let aval = document.querySelector(".alertaava");
+    aval.innerHTML = "";
     if (item.status === 2) {
-      let aval = document.querySelector(".alertaava");
       aval.innerHTML = `
     <div class="texto-alerta" style="
     text-size|: ;
@@ -165,7 +165,7 @@ async function procurarconsultas() {
       </div>
       </div>
 <div class="titulo">
-  <p>${semana}, ${ano}/${mes}/${dia} às ${horas}:${minutos}</p>
+  <p>${semana}, ${dia}/${mes}/${ano} às ${horas}:${minutos}</p>
 </div>
 <div class="info">
   <div class="icone">
