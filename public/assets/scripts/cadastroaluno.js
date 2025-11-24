@@ -16,8 +16,7 @@ form.addEventListener("submit", async function (event) {
     email: pemail.value,
     turma: pturma.value,
     matricula: pmatricula.value,
-    genero: pgenero.value,
-    escola: "Cedup",
+    genero: pgenero.value
   };
   if (psenha.value == pconfirmar.value) {
     try {
@@ -30,7 +29,7 @@ form.addEventListener("submit", async function (event) {
       };
 
       const response = await fetch(
-        "https://2mkvsd-3000.csb.app/alunos",
+        "https://hdd5d7-3000.csb.app/alunos",
         options
       );
       if (!response.ok) {
@@ -38,8 +37,8 @@ form.addEventListener("submit", async function (event) {
       }
       const dados = await response.json();
       console.log("opa");
-      localStorage.setItem("login", dados["email"]);
-      localStorage.setItem("senha", dados["senha"]);
+      sessionStorage.setItem("login", dados["email"]);
+      sessionStorage.setItem("senha", dados["senha"]);
       window.location.href = "/aluno-agenda.html";
       event.preventDefault();
     } catch (error) {

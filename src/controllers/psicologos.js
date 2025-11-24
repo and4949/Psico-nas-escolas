@@ -1,9 +1,10 @@
 const { Router } = require("express");
 const { db } = require("../db");
+const { autenticar } = require("../autentincar");
 
 const rotaPsicologos = Router();
 
-rotaPsicologos.get("/psicologos", async function (req, res) {
+rotaPsicologos.get("/psicologos", autenticar, async function (req, res) {
   const itens = await db.Psicologo.findMany();
   console.log(itens);
   res.json(itens);

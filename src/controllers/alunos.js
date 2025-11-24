@@ -1,16 +1,17 @@
 const { Router } = require("express");
 const { db } = require("../db");
+const { autenticar } = require("../autentincar");
 
 const rotaAlunos = Router();
 
-rotaAlunos.get("/alunos", async function (req, res) {
+rotaAlunos.get("/alunos", autenticar, async function (req, res) {
   const itens = await db.aluno.findMany();
   console.log(itens);
   res.json(itens);
 });
 
 rotaAlunos.post("/alunos", async function (req, res) {
-  const { nome, email, genero, matricula, senha, turma, escola } = req.body;
+  const { nome, email, genero, matricula, senha, turma} = req.body;
   const psicologo = await db.psicologo.findFirst({
     where: {
       email,
@@ -30,8 +31,7 @@ rotaAlunos.post("/alunos", async function (req, res) {
       genero,
       matricula,
       senha,
-      turma,
-      escola,
+      turma
     },
   });
   console.log(itens);
@@ -49,7 +49,7 @@ rotaAlunos.delete("/alunos/:id", async function (req, res) {
 });
 rotaAlunos.put("/alunos/:id", async function (req, res) {
   const { id } = req.params;
-  let { nome, email, genero, matricula, senha, turma, escola, adm } = req.body;
+  let { nome, email, genero, matricula, senha, turma,adm } = req.body;
 
   if (adm == "true") {
     adm = true;
@@ -66,7 +66,6 @@ rotaAlunos.put("/alunos/:id", async function (req, res) {
       matricula,
       senha,
       turma,
-      escola,
       adm,
     },
   });

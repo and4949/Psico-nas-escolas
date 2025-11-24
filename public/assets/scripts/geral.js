@@ -1,3 +1,3 @@
 function leave() {
-    localStorage.clear();
-  }
+  sessionStorage.clear();
+}

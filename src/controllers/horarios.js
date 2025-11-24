@@ -1,15 +1,16 @@
 const { Router } = require("express");
 const { db } = require("../db");
+const { autenticar } = require("../autentincar");
 
 const rotaHorarios = Router();
 
-rotaHorarios.get("/horarios", async function (req, res) {
+rotaHorarios.get("/horarios", autenticar, async function (req, res) {
   const itens = await db.Horario.findMany();
   console.log(itens);
   res.json(itens);
 });
 
-rotaHorarios.post("/Horarios", async function (req, res) {
+rotaHorarios.post("/Horarios", autenticar, async function (req, res) {
   const { comeco, fim } = req.body;
   const itens = await db.Horario.create({
     data: {

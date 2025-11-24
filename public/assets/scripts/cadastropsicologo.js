@@ -1,4 +1,5 @@
 const form = document.querySelector("form");
+
 form.addEventListener("submit", async function (event) {
   event.preventDefault();
 
@@ -27,7 +28,7 @@ form.addEventListener("submit", async function (event) {
       };
 
       const response = await fetch(
-        "https://2mkvsd-3000.csb.app/psicologos",
+        "https://hdd5d7-3000.csb.app/psicologos",
         options
       );
       if (!response.ok) {
@@ -35,8 +36,8 @@ form.addEventListener("submit", async function (event) {
       }
       const dados = await response.json();
       console.log("opa");
-      localStorage.setItem("login", dados["email"]);
-      localStorage.setItem("senha", dados["senha"]);
+      sessionStorage.setItem("login", dados["email"]);
+      sessionStorage.setItem("senha", dados["senha"]);
 
       event.preventDefault();
     } catch (error) {
