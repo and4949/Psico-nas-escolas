@@ -87,9 +87,10 @@
   margin-top: 16px;
 }
 .comentario {
+  height: 80px;
   width: 520px;
   background-color: #f5f5f5;
-  border-radius: 30px;
+  border-radius: 15px;
   border: #d9d9d9 3px solid;
   display: flex;
   align-items: center;
@@ -168,4 +169,14 @@
 }
 .status-Alertado {
   background-color: #e52727;
+}
+
+.come {
+  height: 95%;
+  width: 95%;
+  resize: none;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  font-family: sans-serif;
 }

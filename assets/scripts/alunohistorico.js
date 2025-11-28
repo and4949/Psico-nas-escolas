@@ -93,9 +93,13 @@ async function criarlateral(x) {
     </div>
     <p class="escrito">Sua avaliação é muito importante para a gente!!</p>
 
-    <input class="comentario" placeholder="Sem avaliação do profissional" value="${comentario}"/>
+    <div class="comentario">
+    <textarea class="come"></textarea>
+    </div>
     <button class="enviar" onclick="comentar(${item.id})">Enviar</button>
     `;
+    let come = document.querySelector(".come")
+    come.value = comentario
     if (item.status === 1) {
       ava.innerHTML = "";
     }
@@ -126,7 +130,7 @@ async function procurarconsultas() {
       const horas = date.getHours().toString().padStart(2, "0");
       const minutos = date.getMinutes().toString().padStart(2, "0");
       if (item.aluno) {
-        aluno = item.aluno.nome;
+        aluno = item.psicologo.nome;
       } else {
         aluno = "vazio";
       }
@@ -163,7 +167,7 @@ async function procurarconsultas() {
   <div class="icone">
     <img src="../assets/images/Paciente.svg" alt="" />
   </div>
-  <p>${aluno}</p>
+  <p>psicologo:${aluno}</p>
 </div>
 </div>`;
     }
@@ -172,7 +176,7 @@ async function procurarconsultas() {
 procurarconsultas();
 /*;*/
 async function comentar(x) {
-  let comentario = document.querySelector(".comentario").value;
+  let comentario = document.querySelector(".come").value;
   const UpdateConsulta = {
     avaliacao: comentario,
     nota: window.nota,
